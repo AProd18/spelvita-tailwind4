@@ -4,7 +4,8 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { compare } from "bcrypt";
 import prisma from "@/lib/prisma";
 
-const handler = NextAuth({
+// Izvuci konfiguraciju u promenljivu authOptions
+export const authOptions = {
   adapter: PrismaAdapter(prisma),
   session: {
     strategy: "jwt",
@@ -36,7 +37,7 @@ const handler = NextAuth({
   ],
   pages: {
     signIn: "/login",
-    error: "/login", // možeš koristiti istu stranicu za greške
+    error: "/login",
   },
   callbacks: {
     async session({ session, token }) {
@@ -46,6 +47,10 @@ const handler = NextAuth({
       return session;
     },
   },
-});
+};
 
+// Kreiraj handler sa authOptions
+const handler = NextAuth(authOptions);
+
+// Exportuj handler za API rute
 export { handler as GET, handler as POST };

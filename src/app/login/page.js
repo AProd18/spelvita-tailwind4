@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
@@ -12,17 +13,29 @@ export default function LoginPage() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const res = await fetch("/api/login", {
-      method: "POST",
-      body: JSON.stringify({ email, password }),
+    const res = await signIn("credentials", {
+      redirect: false,
+      email,
+      password,
     });
 
-    const data = await res.json();
-
     if (res.ok) {
-      router.push("/"); // ili "/dashboard" kad budeš imao korisnički deo
+      // pozovi API da proveri da li je korisnik već uneo iskustvo
+      try {
+        const checkRes = await fetch("/api/has-experience");
+        const checkData = await checkRes.json();
+
+        if (checkRes.ok && checkData.hasExperience) {
+          router.push("/"); // već postoji iskustvo, idi na početnu
+        } else {
+          router.push("/add-experience"); // nema iskustva, idi na unos
+        }
+      } catch (err) {
+        console.error("Greška prilikom provere iskustva:", err);
+        router.push("/"); // fallback ako nešto pukne
+      }
     } else {
-      setError(data.message || "Login failed");
+      setError("Neispravan email ili lozinka.");
     }
   };
 

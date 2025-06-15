@@ -1,4 +1,22 @@
-export default function Home() {
+async function fetchExperiences() {
+  const res = await fetch(
+    `${process.env.NEXTAUTH_URL || "http://localhost:3000"}/api/experience`
+  );
+  if (!res.ok) {
+    throw new Error("Failed to fetch experiences");
+  }
+  return res.json();
+}
+
+export default async function Home() {
+  let experiences = [];
+
+  try {
+    experiences = await fetchExperiences();
+  } catch (error) {
+    console.error(error);
+  }
+
   return (
     <section className="text-center space-y-12">
       <div className="bg-[color:var(--color-dark-olive)] text-[color:var(--color-cornsilk)] py-20 px-6 rounded-lg shadow-lg">
@@ -119,43 +137,21 @@ export default function Home() {
           </h2>
 
           <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2">
-            <div className="bg-white border border-[#A9B388] rounded-2xl p-6 shadow-md text-left">
-              <p className="text-[#5F6F52] italic mb-4">
-                “Oduševljena sam! Nakon dve nedelje redovnog korišćenja, osećam
-                više energije i koža mi je blistavija.”
-              </p>
-              <div className="font-semibold text-[#5F6F52]">
-                Jelena M., Beograd
-              </div>
-            </div>
+            {experiences.length === 0 && (
+              <p className="text-[#5F6F52]">Još nema iskustava.</p>
+            )}
 
-            <div className="bg-white border border-[#A9B388] rounded-2xl p-6 shadow-md text-left">
-              <p className="text-[#5F6F52] italic mb-4">
-                “Spelvita mi je pomogla da se izborim sa jutarnjim umorom.
-                Osvežavajuće i moćno!”
-              </p>
-              <div className="font-semibold text-[#5F6F52]">
-                Marko V., Novi Sad
+            {experiences.map((exp) => (
+              <div
+                key={exp.id}
+                className="bg-white border border-[#A9B388] rounded-2xl p-6 shadow-md text-left"
+              >
+                <p className="text-[#5F6F52] italic mb-4">“{exp.message}”</p>
+                <div className="font-semibold text-[#5F6F52]">
+                  {exp.fullName}, {exp.location}
+                </div>
               </div>
-            </div>
-
-            <div className="bg-white border border-[#A9B388] rounded-2xl p-6 shadow-md text-left">
-              <p className="text-[#5F6F52] italic mb-4">
-                “Jutarnji ritual koji ne preskačem – Spelvita me puni pozitivnom
-                energijom i bistri um.”
-              </p>
-              <div className="font-semibold text-[#5F6F52]">
-                Aleksandar P., Beograd
-              </div>
-            </div>
-
-            <div className="bg-white border border-[#A9B388] rounded-2xl p-6 shadow-md text-left">
-              <p className="text-[#5F6F52] italic mb-4">
-                “Probala sam razne zelene sokove, ali ovaj je nešto posebno.
-                Prirodan, jak i efektan!”
-              </p>
-              <div className="font-semibold text-[#5F6F52]">Ana K., Niš</div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

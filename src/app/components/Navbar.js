@@ -1,8 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { useSession, signOut } from "next-auth/react";
 
 export default function Navbar() {
+  const { data: session, status } = useSession();
+
   return (
     <header className="bg-[color:var(--color-dark-olive)] text-[color:var(--color-cornsilk)] shadow-md">
       <nav className="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
@@ -34,22 +37,38 @@ export default function Navbar() {
               FAQ
             </Link>
           </li>
-          <li>
-            <Link
-              href="/login"
-              className="hover:text-[color:var(--color-laurel-green)] transition-colors"
-            >
-              Prijava
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/register"
-              className="hover:text-[color:var(--color-laurel-green)] transition-colors"
-            >
-              Registracija
-            </Link>
-          </li>
+
+          {status === "loading" ? null : session ? (
+            <>
+              <li>
+                <button
+                  onClick={() => signOut()}
+                  className="hover:text-[color:var(--color-laurel-green)] transition-colors uppercase"
+                >
+                  Odjavi se
+                </button>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link
+                  href="/login"
+                  className="hover:text-[color:var(--color-laurel-green)] transition-colors"
+                >
+                  Prijava
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/register"
+                  className="hover:text-[color:var(--color-laurel-green)] transition-colors"
+                >
+                  Registracija
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
       </nav>
     </header>
