@@ -28,6 +28,11 @@ export default async function Home() {
           dodataka, bez kompromisa. Pravo iz srca prirode, za tvoje zdravlje i
           energiju.
         </p>
+        <div className="mt-6 block text-center">
+          <div className="bg-[color:var(--color-laurel-green)] text-[color:var(--color-cornsilk)] inline-block px-6 py-3 rounded-full text-base shadow-md">
+            Trenutno dostupno tabli žita: <span className="font-bold">23</span>
+          </div>
+        </div>
         <button className="mt-8 bg-[color:var(--color-cornsilk)] text-[color:var(--color-dark-olive)] font-semibold py-3 px-6 rounded-full hover:bg-[color:var(--color-laurel-green)] hover:text-[color:var(--color-cornsilk)] transition-all duration-300">
           Poruči odmah
         </button>
