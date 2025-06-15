@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]/route";
 
 export async function GET() {
   try {
@@ -14,11 +16,8 @@ export async function GET() {
   }
 }
 
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
-
 export async function PUT(request) {
-  const session = await getServerSession(authOptions);
+  const session = await getServerSession({ req: request, ...authOptions });
 
   if (!session || session.user.role !== "admin") {
     return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
@@ -32,9 +31,19 @@ export async function PUT(request) {
   }
 
   try {
-    const updated = await prisma.availability.create({
-      data: { quantity },
-    });
+    const existing = await prisma.availability.findFirst();
+
+    let updated;
+    if (existing) {
+      updated = await prisma.availability.update({
+        where: { id: existing.id },
+        data: { quantity },
+      });
+    } else {
+      updated = await prisma.availability.create({
+        data: { quantity },
+      });
+    }
 
     return NextResponse.json({ success: true, updated });
   } catch (error) {

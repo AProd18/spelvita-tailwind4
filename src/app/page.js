@@ -8,11 +8,24 @@ async function fetchExperiences() {
   return res.json();
 }
 
+async function fetchAvailability() {
+  const res = await fetch(
+    `${process.env.NEXTAUTH_URL || "http://localhost:3000"}/api/availability`
+  );
+  if (!res.ok) {
+    throw new Error("Failed to fetch availability");
+  }
+  const data = await res.json();
+  return data.quantity || 0;
+}
+
 export default async function Home() {
   let experiences = [];
+  let availability = 0;
 
   try {
     experiences = await fetchExperiences();
+    availability = await fetchAvailability();
   } catch (error) {
     console.error(error);
   }
@@ -30,7 +43,8 @@ export default async function Home() {
         </p>
         <div className="mt-6 block text-center">
           <div className="bg-[color:var(--color-laurel-green)] text-[color:var(--color-cornsilk)] inline-block px-6 py-3 rounded-full text-base shadow-md">
-            Trenutno dostupno tabli žita: <span className="font-bold">23</span>
+            Trenutno dostupno tabli žita:{" "}
+            <span className="font-bold">{availability}</span>
           </div>
         </div>
         <button className="mt-8 bg-[color:var(--color-cornsilk)] text-[color:var(--color-dark-olive)] font-semibold py-3 px-6 rounded-full hover:bg-[color:var(--color-laurel-green)] hover:text-[color:var(--color-cornsilk)] transition-all duration-300">
