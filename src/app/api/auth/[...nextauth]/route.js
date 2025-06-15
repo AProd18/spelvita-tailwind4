@@ -40,9 +40,17 @@ export const authOptions = {
     error: "/login",
   },
   callbacks: {
+    async jwt({ token, user }) {
+      // Kada se korisnik prvi put loguje, `user` postoji, pa ubacujemo role
+      if (user) {
+        token.role = user.role;
+      }
+      return token;
+    },
     async session({ session, token }) {
       if (token?.sub) {
         session.user.id = token.sub;
+        session.user.role = token.role;
       }
       return session;
     },

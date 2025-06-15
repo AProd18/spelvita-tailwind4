@@ -15,6 +15,7 @@ model User {
   emailVerified  DateTime?
   image          String?
   password       String?   // samo ako koristiš custom credentials login
+  role           String   @default("user")
   experience     Experience?
 
   accounts       Account[]
@@ -65,4 +66,10 @@ model Experience {
   userId    String   @unique
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
+}
+
+model Availability {
+  id        Int      @id @default(autoincrement())
+  quantity  Int
+  updatedAt DateTime @updatedAt
 }
