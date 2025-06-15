@@ -40,6 +40,16 @@ export default function Navbar() {
 
           {status === "loading" ? null : session ? (
             <>
+              {session?.user?.role === "admin" && (
+                <li>
+                  <Link
+                    href="/admin/availability"
+                    className="hover:text-[color:var(--color-laurel-green)] transition-colors"
+                  >
+                    Admin Panel
+                  </Link>
+                </li>
+              )}
               <li>
                 <button
                   onClick={() => signOut()}
