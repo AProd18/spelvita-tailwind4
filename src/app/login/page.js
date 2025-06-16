@@ -22,7 +22,7 @@ export default function LoginPage() {
     if (res.ok) {
       // pozovi API da proveri da li je korisnik već uneo iskustvo
       try {
-        const checkRes = await fetch("/api/has-experience");
+        const checkRes = await fetch("/api/experience/has");
         const checkData = await checkRes.json();
 
         if (checkRes.ok && checkData.hasExperience) {

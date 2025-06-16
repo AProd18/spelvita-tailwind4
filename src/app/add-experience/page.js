@@ -39,7 +39,7 @@ export default function AddExperiencePage() {
     }
 
     try {
-      const res = await fetch("/api/add-experience", {
+      const res = await fetch("/api/experience/add", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
