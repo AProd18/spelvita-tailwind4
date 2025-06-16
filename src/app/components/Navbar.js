@@ -38,7 +38,7 @@ export default function Navbar() {
             </Link>
           </li>
 
-          {status === "loading" ? null : session ? (
+          {session ? (
             <>
               {session?.user?.role === "admin" && (
                 <li>
