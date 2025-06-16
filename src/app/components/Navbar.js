@@ -2,12 +2,7 @@
 
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
-import {
-  AccountCircleSharp,
-  Info,
-  MailOutline,
-  HelpOutline,
-} from "@mui/icons-material";
+import { AccountCircleSharp } from "@mui/icons-material";
 
 export default function Navbar() {
   const { data: session, status } = useSession();

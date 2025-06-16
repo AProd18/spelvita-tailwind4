@@ -42,7 +42,7 @@ export default async function Home() {
           energiju.
         </p>
         <div className="mt-6 block text-center">
-          <div className="bg-[color:var(--color-laurel-green)] text-[color:var(--color-cornsilk)] inline-block px-6 py-3 rounded-full text-base shadow-md">
+          <div className="bg-[color:var(--color-laurel-green)] text-[color:var(--color-cornsilk)] inline-block px-6 py-3 rounded-lg text-base shadow-md">
             Trenutno dostupno tabli žita:{" "}
             <span className="font-bold">{availability}</span>
           </div>
