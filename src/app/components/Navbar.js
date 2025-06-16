@@ -15,7 +15,7 @@ export default function Navbar() {
         <ul className="flex space-x-6 text-xs font-medium uppercase">
           <li>
             <Link
-              href="/about"
+              href="/o-nama"
               className="hover:text-[color:var(--color-laurel-green)] transition-colors"
             >
               O nama
@@ -23,7 +23,7 @@ export default function Navbar() {
           </li>
           <li>
             <Link
-              href="/contact"
+              href="/kontakt"
               className="hover:text-[color:var(--color-laurel-green)] transition-colors"
             >
               Kontakt
@@ -66,17 +66,17 @@ export default function Navbar() {
                   href="/login"
                   className="hover:text-[color:var(--color-laurel-green)] transition-colors"
                 >
-                  Prijava
+                  Pristup nalogu
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   href="/register"
                   className="hover:text-[color:var(--color-laurel-green)] transition-colors"
                 >
                   Registracija
                 </Link>
-              </li>
+              </li> */}
             </>
           )}
         </ul>

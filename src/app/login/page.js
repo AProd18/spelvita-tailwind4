@@ -41,7 +41,7 @@ export default function LoginPage() {
 
   return (
     <div className="max-w-md mx-auto mt-10 p-4 border rounded">
-      <h1 className="text-xl font-bold mb-4">Login</h1>
+      <h1 className="text-xl font-bold mb-4">Pristup nalogu</h1>
       <form onSubmit={handleLogin} className="space-y-4">
         <input
           type="email"
@@ -62,8 +62,19 @@ export default function LoginPage() {
           type="submit"
           className="w-full bg-blue-600 text-white py-2 rounded"
         >
-          Login
+          Prijavi se
         </button>
+        <div className="text-center text-sm mt-6">
+          <p className="text-gray-700">
+            Nemate nalog?
+            <a
+              href="/register"
+              className="text-blue-600 font-medium hover:underline ml-1"
+            >
+              Registrujte se ovde
+            </a>
+          </p>
+        </div>
       </form>
     </div>
   );
