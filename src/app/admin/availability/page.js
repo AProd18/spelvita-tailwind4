@@ -49,7 +49,7 @@ export default function AdminAvailabilityPage() {
         />
         <button
           type="submit"
-          className=" bg-[color:var(--color-laurel-green)] text-[color:var(--color-dark-olive)] font-semibold py-3 px-6 rounded hover:bg-[color:var(--color-cornsilk)]  transition-all duration-300 cursor-pointer"
+          className=" bg-[color:var(--color-laurel-green)] text-[color:var(--color-dark-olive)] font-semibold py-3 px-6 rounded hover:bg-[color:var(--color-cornsilk-dark)]  transition-all duration-300 cursor-pointer"
           disabled={loading}
         >
           {loading ? "Čuvanje..." : "Sačuvaj"}

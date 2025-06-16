@@ -60,7 +60,7 @@ export default function LoginPage() {
         {error && <p className="text-red-500">{error}</p>}
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded"
+          className="w-full  py-2 rounded bg-[color:var(--color-laurel-green)] text-[color:var(--color-dark-olive)] font-semibold  px-6  hover:bg-[color:var(--color-cornsilk-dark)]  transition-all duration-300 cursor-pointer"
         >
           Prijavi se
         </button>

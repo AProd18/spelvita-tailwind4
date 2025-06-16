@@ -2,6 +2,12 @@
 
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
+import {
+  AccountCircleSharp,
+  Info,
+  MailOutline,
+  HelpOutline,
+} from "@mui/icons-material";
 
 export default function Navbar() {
   const { data: session, status } = useSession();
@@ -13,30 +19,30 @@ export default function Navbar() {
           <Link href="/">Spelvita</Link>
         </h1>
         <ul className="flex space-x-6 text-xs font-medium uppercase">
-          <li>
+          <li className="flex items-center space-x-1">
             <Link
               href="/o-nama"
               className="hover:text-[color:var(--color-laurel-green)] transition-colors"
             >
-              O nama
+              <span>O nama</span>
             </Link>
           </li>
-          <li>
+          <li className="flex items-center space-x-1">
             <Link
               href="/kontakt"
-              className="hover:text-[color:var(--color-laurel-green)] transition-colors"
+              className="hover:text-[color:var(--color-laurel-green)] transition-colors flex items-center space-x-1"
             >
-              Kontakt
+              <span>Kontakt</span>
             </Link>
           </li>
-          <li>
+          {/* <li className="flex items-center space-x-1">
             <Link
               href="/faq"
-              className="hover:text-[color:var(--color-laurel-green)] transition-colors"
+              className="hover:text-[color:var(--color-laurel-green)] transition-colors flex items-center space-x-1"
             >
-              FAQ
+              <span>FAQ</span>
             </Link>
-          </li>
+          </li> */}
 
           {session ? (
             <>
@@ -44,18 +50,18 @@ export default function Navbar() {
                 <li>
                   <Link
                     href="/admin/availability"
-                    className="hover:text-[color:var(--color-laurel-green)] transition-colors"
+                    className="hover:text-[color:var(--color-laurel-green)] transition-colors flex items-center space-x-1"
                   >
-                    Admin Panel
+                    Kontrolni centar
                   </Link>
                 </li>
               )}
               <li>
                 <button
                   onClick={() => signOut()}
-                  className="hover:text-[color:var(--color-laurel-green)] transition-colors uppercase"
+                  className="hover:text-[color:var(--color-laurel-green)] transition-colors flex items-center space-x-1 uppercase"
                 >
-                  Odjavi se
+                  <span>Odjavi se</span>
                 </button>
               </li>
             </>
@@ -64,9 +70,10 @@ export default function Navbar() {
               <li>
                 <Link
                   href="/login"
-                  className="hover:text-[color:var(--color-laurel-green)] transition-colors"
+                  className="hover:text-[color:var(--color-laurel-green)] transition-colors flex items-center space-x-1"
                 >
-                  Pristup nalogu
+                  <AccountCircleSharp fontSize="small" />{" "}
+                  <span>Pristup nalogu</span>
                 </Link>
               </li>
               {/* <li>

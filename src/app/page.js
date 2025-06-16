@@ -75,16 +75,32 @@ export default async function Home() {
         </div>
       </div>
 
-      <section className="bg-[#FEFAE0] py-16 px-4 sm:px-6 lg:px-8">
+      <section
+        className="py-16 px-4 sm:px-6 lg:px-8"
+        style={{ backgroundColor: "var(--color-cornsilk)" }}
+      >
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#5F6F52] mb-4">
+          <h2
+            className="text-3xl sm:text-4xl font-bold mb-4"
+            style={{ color: "var(--color-dark-olive)" }}
+          >
             Kako se koristi Spelvita?
           </h2>
-          <p className="text-lg text-[#5F6F52] mb-8">
+          <p
+            className="text-lg mb-8"
+            style={{ color: "var(--color-dark-olive)" }}
+          >
             Neka ti jutro počne prirodno i snažno.
           </p>
-          <div className="bg-white rounded-2xl shadow-md p-6 sm:p-8 border border-[#A9B388]">
-            <ul className="space-y-4 text-left text-[#5F6F52]">
+          <div
+            className="rounded-2xl shadow-md p-6 sm:p-8 border"
+            style={{
+              backgroundColor: "white",
+              borderColor: "var(--color-laurel-green)",
+              color: "var(--color-dark-olive)",
+            }}
+          >
+            <ul className="space-y-4 text-left">
               <li className="flex items-start">
                 <span className="mr-3 text-xl">🌿</span>
                 <span>
@@ -110,7 +126,8 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      <section className="bg-[#A9B388] py-16 px-4 sm:px-6 lg:px-8">
+
+      <section className="py-16 px-4 sm:px-6 lg:px-8 rounded-lg bg-[color:var(--color-ligh-laurel-green)]">
         <div className="max-w-5xl mx-auto text-center text-white">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
             Šta Spelvita izdvaja od ostalih?
@@ -120,19 +137,19 @@ export default async function Home() {
           </p>
 
           <div className="grid gap-8 sm:grid-cols-2">
-            <div className="bg-[#5F6F52] p-6 rounded-2xl shadow-md text-left">
+            <div className="bg-[color:var(--color-dark-olive)] p-6 rounded-2xl shadow-md text-left">
               <h3 className="text-xl font-semibold mb-2">🥬 100% prirodan</h3>
               <p>
                 Bez dodatih šećera, aditiva ili konzervansa. Samo čista priroda.
               </p>
             </div>
-            <div className="bg-[#5F6F52] p-6 rounded-2xl shadow-md text-left">
+            <div className="bg-[color:var(--color-dark-olive)] p-6 rounded-2xl shadow-md text-left">
               <h3 className="text-xl font-semibold mb-2">❄️ Hladno ceđen</h3>
               <p>
                 Sačuvani svi nutrijenti zahvaljujući procesu hladnog ceđenja.
               </p>
             </div>
-            <div className="bg-[#5F6F52] p-6 rounded-2xl shadow-md text-left">
+            <div className="bg-[color:var(--color-dark-olive)] p-6 rounded-2xl shadow-md text-left">
               <h3 className="text-xl font-semibold mb-2">
                 🌱 Lokalna proizvodnja
               </h3>
@@ -140,7 +157,7 @@ export default async function Home() {
                 Proizveden u Srbiji – direktno sa naših polja do tvoje čaše.
               </p>
             </div>
-            <div className="bg-[#5F6F52] p-6 rounded-2xl shadow-md text-left">
+            <div className="bg-[color:var(--color-dark-olive)] p-6 rounded-2xl shadow-md text-left">
               <h3 className="text-xl font-semibold mb-2">🥤 Neuporediv ukus</h3>
               <p>
                 Blago gorak, osvežavajuć i bogat – ukus pravog zelenog života.
@@ -149,9 +166,15 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      <section className="bg-[#FEFAE0] py-16 px-4 sm:px-6 lg:px-8">
+      <section
+        className=" py-16 px-4 sm:px-6 lg:px-8"
+        style={{ backgroundColor: "var(--color-cornsilk)" }}
+      >
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#5F6F52] mb-10">
+          <h2
+            className="text-3xl sm:text-4xl font-bold  mb-10"
+            style={{ color: "var(--color-dark-olive)" }}
+          >
             Iskustva korisnika
           </h2>
 
@@ -174,18 +197,18 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      <section className="bg-[#5F6F52] py-16 px-4 sm:px-6 lg:px-8">
+      <section className="bg-[color:var(--color-dark-olive)] py-16 px-4 sm:px-6 lg:px-8 rounded-lg">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#FEFAE0] mb-6">
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
             Započni svoju Spelvita rutinu danas
           </h2>
-          <p className="text-[#FEFAE0] text-lg mb-8">
+          <p className="text-white text-lg mb-8">
             Prirodan izvor energije i vitalnosti — tvoj organizam će ti biti
             zahvalan.
           </p>
           <a
             href="#poruci"
-            className="inline-block bg-[#A9B388] text-[#5F6F52] font-semibold py-3 px-6 rounded-full hover:bg-[#8b9e72] transition"
+            className="inline-block bg-[color:var(--color-cornsilk)] text-[color:var(--color-dark-olive)] font-semibold py-3 px-6 rounded-full hover:bg-[color:var(--color-laurel-green)] hover:text-[color:var(--color-cornsilk)] transition"
           >
             Poruči svoju dozu zdravlja
           </a>
