@@ -1,12 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --color-dark-olive: #2f584f; /* tamno zelena sa primesom plave, duboka šumska nijansa */
+  --color-dark-olive: #2f584f;
   --color-light-olive: #3e7a6f;
-  --color-laurel-green: #55977a; /* srednje zeleni ton, osvežavajući i prirodni */
-  --color-cornsilk: #cce3d9; /* svetlo, nežno zelena sa blagim plavkastim odsjajem */
-
+  --color-laurel-green: #55977a;
+  --color-cornsilk: #cce3d9;
   --color-cornsilk-dark: #cdd5b9;
-
   --color-ligh-laurel-green: #55977b;
 }

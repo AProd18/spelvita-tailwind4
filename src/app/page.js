@@ -32,7 +32,7 @@ export default async function Home() {
 
   return (
     <section className="text-center space-y-12">
-      <div className="bg-[color:var(--color-dark-olive)] text-[color:var(--color-cornsilk)] py-20 px-6 rounded-lg shadow-lg">
+      <div className="bg-gradient-to-b from-[color:var(--color-dark-olive)] to-[color:var(--color-light-olive)] text-[color:var(--color-cornsilk)] py-20 px-6 rounded-lg shadow-lg">
         <h2 className="text-4xl md:text-5xl font-bold mb-4">
           Oseti snagu prirode u svakoj kapljici
         </h2>
@@ -104,8 +104,8 @@ export default async function Home() {
               <li className="flex items-start">
                 <span className="mr-3 text-xl">🌿</span>
                 <span>
-                  <strong>Korak 1:</strong> Ujutru na prazan stomak, popij 50ml
-                  hladnog soka.
+                  <strong>Korak 1:</strong> Ujutru na prazan stomak, rastopi
+                  jednu kocku zamrznute spelte u čaši hladne vode.
                 </span>
               </li>
               <li className="flex items-start">
@@ -127,7 +127,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="py-16 px-4 sm:px-6 lg:px-8 rounded-lg bg-[color:var(--color-ligh-laurel-green)]">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 rounded-lg bg-gradient-to-b from-[color:var(--color-laurel-green)] to-[color:var(--color-light-olive)]">
         <div className="max-w-5xl mx-auto text-center text-white">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
             Šta Spelvita izdvaja od ostalih?
@@ -197,7 +197,7 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      <section className="bg-[color:var(--color-dark-olive)] py-16 px-4 sm:px-6 lg:px-8 rounded-lg">
+      <section className="bg-gradient-to-b from-[color:var(--color-dark-olive)] to-[color:var(--color-light-olive)] py-16 px-4 sm:px-6 lg:px-8 rounded-lg">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
             Započni svoju Spelvita rutinu danas

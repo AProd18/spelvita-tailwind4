@@ -45,14 +45,14 @@ export default function LoginPage() {
       <form onSubmit={handleLogin} className="space-y-4">
         <input
           type="email"
-          placeholder="Email"
+          placeholder="Adresa e-pošte"
           className="w-full p-2 border rounded"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
-          placeholder="Password"
+          placeholder="Lozinka"
           className="w-full p-2 border rounded"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -62,7 +62,7 @@ export default function LoginPage() {
           type="submit"
           className="w-full  py-2 rounded bg-[color:var(--color-laurel-green)] text-[color:var(--color-dark-olive)] font-semibold  px-6  hover:bg-[color:var(--color-cornsilk-dark)]  transition-all duration-300 cursor-pointer"
         >
-          Prijavi se
+          Ulaz
         </button>
         <div className="text-center text-sm mt-6">
           <p className="text-gray-700">
