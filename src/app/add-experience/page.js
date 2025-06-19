@@ -95,7 +95,7 @@ export default function AddExperiencePage() {
         {success && <p className="text-green-600">✅{success}</p>}
         <button
           type="submit"
-          className="w-full bg-[#5F6F52] text-white py-2 rounded hover:bg-opacity-90"
+          className="w-full bg-[color:var(--color-dark-olive)] text-[color:var(--color-cornsilk)] py-2 rounded hover:bg-opacity-90 hover:bg-opacity-90 hover:bg-[color:var(--color-cornsilk-dark)] hover:text-[color:var(--color-dark-olive)] cursor-pointer"
         >
           Pošalji
         </button>

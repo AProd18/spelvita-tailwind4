@@ -54,7 +54,7 @@ export default function Navbar() {
               <li>
                 <button
                   onClick={() => signOut()}
-                  className="hover:text-[color:var(--color-laurel-green)] transition-colors flex items-center space-x-1 uppercase"
+                  className="hover:text-[color:var(--color-laurel-green)] transition-colors flex items-center space-x-1 uppercase  cursor-pointer"
                 >
                   <span>Odjavi se</span>
                 </button>
