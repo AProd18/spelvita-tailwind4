@@ -40,27 +40,39 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-4 border rounded">
+    <div className="max-w-md mx-auto mt-10 bg-white p-6 rounded shadow">
       <h1 className="text-xl font-bold mb-4">Pristup nalogu</h1>
       <form onSubmit={handleLogin} className="space-y-4">
-        <input
-          type="email"
-          placeholder="Adresa e-pošte"
-          className="w-full p-2 border rounded"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Lozinka"
-          className="w-full p-2 border rounded"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        {error && <p className="text-red-500">{error}</p>}
+        <div>
+          <label className="block text-sm font-medium text-gray-600 mb-1">
+            Adresa e-pošte <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="email"
+            placeholder="Adresa e-pošte"
+            className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-[color:var(--color-laurel-green)]"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-600 mb-1">
+            Lozinka <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="password"
+            placeholder="Lozinka"
+            className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-[color:var(--color-laurel-green)]"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        {error && <p className="text-red-500 text-sm">{error}</p>}
         <button
           type="submit"
-          className="w-full  py-2 rounded bg-[color:var(--color-laurel-green)] text-[color:var(--color-dark-olive)] font-semibold  px-6  hover:bg-[color:var(--color-cornsilk-dark)]  transition-all duration-300 cursor-pointer"
+          className="bg-[color:var(--color-dark-olive)] text-[color:var(--color-cornsilk)] px-4 py-2 rounded hover:bg-opacity-90 hover:bg-[color:var(--color-cornsilk-dark)] hover:text-[color:var(--color-dark-olive)] cursor-pointer w-full"
         >
           Ulaz
         </button>

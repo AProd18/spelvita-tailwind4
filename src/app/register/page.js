@@ -6,8 +6,8 @@ import { useRouter } from "next/navigation";
 export default function RegisterPage() {
   const router = useRouter();
   const [form, setForm] = useState({
-    email: "",
     username: "",
+    email: "",
     password: "",
     confirmPassword: "",
   });
@@ -50,37 +50,53 @@ export default function RegisterPage() {
     <div className="max-w-md mx-auto mt-10 bg-white p-6 rounded shadow">
       <h2 className="text-xl font-bold mb-4">Registracija</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          type="text"
-          name="username"
-          placeholder="Korisničko ime"
-          value={form.username}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email adresa"
-          value={form.email}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Lozinka"
-          value={form.password}
-          onChange={handleChange}
-          className="w-full p-2 border rounded"
-          required
-        />
+        <div>
+          <label className="block text-sm font-medium text-gray-600 mb-1">
+            Korisničko ime <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            name="username"
+            value={form.username}
+            onChange={handleChange}
+            className="w-full p-2 border rounded"
+            required
+            autoComplete="off"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-600 mb-1">
+            Adresa e-pošte <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="email"
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+            className="w-full p-2 border rounded"
+            required
+            autoComplete="off"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-600 mb-1">
+            Lozinka <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="password"
+            name="password"
+            value={form.password}
+            onChange={handleChange}
+            className="w-full p-2 border rounded"
+            required
+          />
+        </div>
+        <label className="block text-sm font-medium text-gray-600 mb-1">
+          Potvrdi lozinku <span className="text-red-500">*</span>
+        </label>
         <input
           type="password"
           name="confirmPassword"
-          placeholder="Potvrdi lozinku"
           value={form.confirmPassword}
           onChange={handleChange}
           className="w-full p-2 border rounded"

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
-import { AccountCircleSharp } from "@mui/icons-material";
+import { PersonOutline } from "@mui/icons-material";
 
 export default function Navbar() {
   const { data: session, status } = useSession();
@@ -67,8 +67,8 @@ export default function Navbar() {
                   href="/login"
                   className="hover:text-[color:var(--color-laurel-green)] transition-colors flex items-center space-x-1"
                 >
-                  <AccountCircleSharp fontSize="small" />{" "}
-                  <span>Pristup nalogu</span>
+                  <PersonOutline fontSize="small" />{" "}
+                  <span>Prijava / Registracija</span>
                 </Link>
               </li>
               {/* <li>
