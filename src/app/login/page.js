@@ -49,7 +49,6 @@ export default function LoginPage() {
           </label>
           <input
             type="email"
-            placeholder="Adresa e-pošte"
             className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-[color:var(--color-laurel-green)]"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -62,7 +61,6 @@ export default function LoginPage() {
           </label>
           <input
             type="password"
-            placeholder="Lozinka"
             className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-[color:var(--color-laurel-green)]"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -72,7 +70,7 @@ export default function LoginPage() {
         {error && <p className="text-red-500 text-sm">{error}</p>}
         <button
           type="submit"
-          className="bg-[color:var(--color-dark-olive)] text-[color:var(--color-cornsilk)] px-4 py-2 rounded hover:bg-opacity-90 hover:bg-[color:var(--color-cornsilk-dark)] hover:text-[color:var(--color-dark-olive)] cursor-pointer w-full"
+          className="bg-[color:var(--color-dark-olive)] text-[color:var(--color-cornsilk)] px-4 py-2 rounded hover:bg-opacity-90 hover:bg-[color:var(--color-cornsilk-dark)] hover:text-[color:var(--color-dark-olive)] cursor-pointer w-full transition-all duration-300"
         >
           Ulaz
         </button>

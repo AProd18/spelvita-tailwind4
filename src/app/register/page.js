@@ -59,7 +59,7 @@ export default function RegisterPage() {
             name="username"
             value={form.username}
             onChange={handleChange}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-[color:var(--color-laurel-green)]"
             required
             autoComplete="off"
           />
@@ -73,7 +73,7 @@ export default function RegisterPage() {
             name="email"
             value={form.email}
             onChange={handleChange}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-[color:var(--color-laurel-green)]"
             required
             autoComplete="off"
           />
@@ -87,7 +87,7 @@ export default function RegisterPage() {
             name="password"
             value={form.password}
             onChange={handleChange}
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-[color:var(--color-laurel-green)]"
             required
           />
         </div>
@@ -99,13 +99,13 @@ export default function RegisterPage() {
           name="confirmPassword"
           value={form.confirmPassword}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-[color:var(--color-laurel-green)]"
           required
         />
         {error && <p className="text-red-500 text-sm">{error}</p>}
         <button
           type="submit"
-          className="bg-[color:var(--color-dark-olive)] text-[color:var(--color-cornsilk)] px-4 py-2 rounded hover:bg-opacity-90 hover:bg-[color:var(--color-cornsilk-dark)] hover:text-[color:var(--color-dark-olive)] cursor-pointer"
+          className="bg-[color:var(--color-dark-olive)] text-[color:var(--color-cornsilk)] px-4 py-2 rounded hover:bg-opacity-90 hover:bg-[color:var(--color-cornsilk-dark)] hover:text-[color:var(--color-dark-olive)] cursor-pointer transition-all duration-300"
         >
           Registruj se
         </button>
