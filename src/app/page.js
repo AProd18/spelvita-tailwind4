@@ -37,7 +37,7 @@ export default async function Home() {
           Oseti snagu prirode u svakoj kapljici
         </h2>
         <p className="text-lg md:text-xl max-w-2xl mx-auto">
-          Spelvita sok od spelte je 100% prirodan napitak od zelenog žita — bez
+          Elixir od spelte je 100% prirodan napitak od zelenog žita — bez
           dodataka, bez kompromisa. Pravo iz srca prirode, za tvoje zdravlje i
           energiju.
         </p>
@@ -84,7 +84,7 @@ export default async function Home() {
             className="text-3xl sm:text-4xl font-bold mb-4"
             style={{ color: "var(--color-dark-olive)" }}
           >
-            Kako se koristi Spelvita?
+            Kako se koristi Elixirspelte?
           </h2>
           <p
             className="text-lg mb-8"
@@ -130,10 +130,10 @@ export default async function Home() {
       <section className="py-16 px-4 sm:px-6 lg:px-8 rounded-lg bg-gradient-to-b from-[color:var(--color-laurel-green)] to-[color:var(--color-light-olive)]">
         <div className="max-w-5xl mx-auto text-center text-white">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            Šta Spelvita izdvaja od ostalih?
+            Šta naš sok izdvaja od ostalih?
           </h2>
           <p className="text-lg mb-10">
-            Nije svaki sok isti. Evo zašto je Spelvita jedinstvena:
+            Nije svaki sok isti. Evo zašto je Elixirspelte jedinstven:
           </p>
 
           <div className="grid gap-8 sm:grid-cols-2">
@@ -200,7 +200,7 @@ export default async function Home() {
       <section className="bg-gradient-to-b from-[color:var(--color-dark-olive)] to-[color:var(--color-light-olive)] py-16 px-4 sm:px-6 lg:px-8 rounded-lg">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-            Započni svoju Spelvita rutinu danas
+            Započni svoju Elixirspelte rutinu danas
           </h2>
           <p className="text-white text-lg mb-8">
             Prirodan izvor energije i vitalnosti — tvoj organizam će ti biti

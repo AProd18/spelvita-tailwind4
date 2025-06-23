@@ -11,7 +11,7 @@ export default function Navbar() {
     <header className="bg-[color:var(--color-dark-olive)] text-[color:var(--color-cornsilk)] shadow-md">
       <nav className="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
         <h1 className="text-xl font-bold tracking-wide">
-          <Link href="/">Spelvita</Link>
+          <Link href="/">Elixirspelte</Link>
         </h1>
         <ul className="flex space-x-6 text-xs font-medium uppercase">
           <li className="flex items-center space-x-1">

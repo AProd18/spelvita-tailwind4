@@ -4,7 +4,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 
 export const metadata = {
-  title: "Spelvita – Sok od spelte",
+  title: "Elixirspelte – Sok od spelte",
   description: "Prirodni sok od zelenog žita, direktno sa naše farme.",
 };
 
