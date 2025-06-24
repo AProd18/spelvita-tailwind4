@@ -1,32 +1,53 @@
-// src/app/admin/layout.js
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const navItems = [
+  { href: "/admin", label: "📊 Statistika" },
+  { href: "/admin/availability", label: "🌾 Dostupnost" },
+  { href: "/admin/orders", label: "🧾 Porudžbine" },
+  { href: "/admin/users", label: "👤 Korisnici" },
+];
 
 export default function AdminLayout({ children }) {
+  const pathname = usePathname();
+
   return (
-    <div className="min-h-screen flex">
+    <div className="flex min-h-screen bg-[color:var(--color-cornsilk)] text-[color:var(--color-dark-olive)]">
       {/* Sidebar */}
-      <aside className="w-64 bg-[color:var(--color-dark-olive)] text-[color:var(--color-cornsilk)] p-6 space-y-4">
-        <h2 className="text-2xl font-bold mb-6">Admin Panel</h2>
-        <nav className="flex flex-col space-y-2 text-sm">
-          <Link href="/admin" className="hover:underline">
-            📊 Statistika
-          </Link>
-          <Link href="/admin/availability" className="hover:underline">
-            🌾 Dostupnost
-          </Link>
-          <Link href="/admin/orders" className="hover:underline">
-            🧾 Porudžbine
-          </Link>
-          <Link href="/admin/users" className="hover:underline">
-            👤 Korisnici
-          </Link>
+      <aside className="fixed top-0 left-0 h-full w-64 bg-[color:var(--color-dark-olive)] p-8 flex flex-col">
+        <h1 className="text-3xl font-extrabold mb-10 text-[color:var(--color-cornsilk)] select-none">
+          Admin Panel
+        </h1>
+
+        <nav className="flex flex-col space-y-4 text-lg font-semibold">
+          {navItems.map(({ href, label }) => {
+            const isActive =
+              pathname === href ||
+              (href !== "/admin" && pathname?.startsWith(href));
+            return (
+              <Link
+                key={href}
+                href={href}
+                className={`px-4 py-3 rounded-md transition-colors duration-300
+                  ${
+                    isActive
+                      ? "bg-[color:var(--color-laurel-green)] text-[color:var(--color-cornsilk)]"
+                      : "text-[color:var(--color-cornsilk)] hover:bg-[color:var(--color-laurel-green)] hover:text-[color:var(--color-cornsilk)]"
+                  }
+                `}
+              >
+                {label}
+              </Link>
+            );
+          })}
         </nav>
+
+        {/* Optional: Dodaj footer ili logout dugme ovde */}
       </aside>
 
-      {/* Glavni sadržaj */}
-      <main className="flex-1 p-10 bg-[color:var(--color-cornsilk)] text-[color:var(--color-dark-olive)]">
-        {children}
-      </main>
+      {/* Main content area */}
+      <main className="flex-1 ml-64 p-12 overflow-auto">{children}</main>
     </div>
   );
 }
