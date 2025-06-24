@@ -1,43 +1,33 @@
-"use client";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import prisma from "@/lib/prisma";
 
-import { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
+export default async function AdminUsersPage() {
+  const session = await getServerSession(authOptions);
 
-export default function AdminUsersPage() {
-  const { data: session, status } = useSession();
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  if (!session || session.user.role !== "admin") {
+    return redirect("/login"); // ili možeš redirect na neku drugu stranicu
+  }
 
-  useEffect(() => {
-    if (session?.user?.role === "admin") {
-      fetch("/api/admin/users")
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.error) {
-            setError(data.error);
-          } else {
-            setUsers(data);
-          }
-        })
-        .catch(() => setError("Greška prilikom učitavanja korisnika."))
-        .finally(() => setLoading(false));
-    }
-  }, [session]);
-
-  if (status === "loading") return <p>Učitavanje...</p>;
-  if (!session || session.user.role !== "admin")
-    return <p>Pristup dozvoljen samo adminima.</p>;
+  const users = await prisma.user.findMany({
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      role: true,
+      createdAt: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
 
   return (
     <div className="max-w-4xl mx-auto mt-10 p-6 bg-white rounded shadow">
       <h1 className="text-2xl font-bold mb-6">Lista korisnika</h1>
 
-      {loading ? (
-        <p>Učitavanje korisnika...</p>
-      ) : error ? (
-        <p className="text-red-600">{error}</p>
-      ) : users.length === 0 ? (
+      {users.length === 0 ? (
         <p>Nema korisnika za prikaz.</p>
       ) : (
         <table className="w-full table-auto border border-gray-300">
