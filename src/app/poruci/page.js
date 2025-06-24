@@ -16,6 +16,11 @@ export default function OrderPage() {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
 
+  const [country, setCountry] = useState("");
+  const [postalCode, setPostalCode] = useState("");
+  const [city, setCity] = useState("");
+  const [fullName, setFullName] = useState("");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -26,7 +31,16 @@ export default function OrderPage() {
       const res = await fetch("/api/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ quantity, note, phone, address }),
+        body: JSON.stringify({
+          quantity,
+          note,
+          phone,
+          address,
+          postalCode,
+          city,
+          fullName,
+          country,
+        }),
       });
 
       const data = await res.json();
@@ -35,6 +49,11 @@ export default function OrderPage() {
       setSuccess("Porudžbina uspešno poslata!");
       setQuantity(1);
       setNote("");
+      setCountry("");
+      setPostalCode("");
+      setCity("");
+      setFullName("");
+      setPhone("");
 
       setTimeout(() => {
         router.push("/");
@@ -79,26 +98,82 @@ export default function OrderPage() {
           />
         </div>
 
-        <div>
-          <label className="block font-semibold mb-1">Broj telefona</label>
-          <input
-            type="text"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            className="w-full border rounded p-2"
-            required
-          />
-        </div>
+        <h2 className="text-lg font-semibold mt-6 mb-2">Adresa isporuke</h2>
 
-        <div>
-          <label className="block font-semibold mb-1">Adresa za dostavu</label>
-          <input
-            type="text"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            className="w-full border rounded p-2"
-            required
-          />
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label className="block font-semibold mb-1">Država *</label>
+            <select
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              className="w-full border rounded p-2"
+              required
+            >
+              <option value="">Izaberi državu</option>
+              <option value="Srbija">Srbija</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="block font-semibold mb-1">Poštanski broj *</label>
+            <input
+              type="text"
+              value={postalCode}
+              onChange={(e) => setPostalCode(e.target.value)}
+              className="w-full border rounded p-2"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block font-semibold mb-1">Grad *</label>
+            <select
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              className="w-full border rounded p-2"
+              required
+            >
+              <option value="">Izaberi grad</option>
+              <option value="Beograd">Beograd</option>
+              <option value="Pančevo">Pančevo</option>
+              <option value="Vršac">Vršac</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="block font-semibold mb-1">Adresa *</label>
+            <input
+              type="text"
+              value={address} // address nije u state, treba dodati!
+              onChange={(e) => setAddress(e.target.value)}
+              className="w-full border rounded p-2"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block font-semibold mb-1">Ime i prezime *</label>
+            <input
+              type="text"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              className="w-full border rounded p-2"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block font-semibold mb-1">
+              Kontakt telefon *
+            </label>
+            <input
+              type="text"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              className="w-full border rounded p-2"
+              required
+            />
+          </div>
         </div>
 
         <div>

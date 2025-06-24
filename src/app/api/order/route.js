@@ -13,7 +13,16 @@ export async function POST(req) {
   }
 
   const body = await req.json();
-  const { quantity, note, phone, address } = body;
+  const {
+    quantity,
+    note,
+    phone,
+    address,
+    country,
+    postalCode,
+    city,
+    fullName,
+  } = body;
 
   if (!quantity || quantity < 1) {
     return new Response(JSON.stringify({ error: "Nevažeća količina." }), {
@@ -28,6 +37,24 @@ export async function POST(req) {
         status: 400,
       }
     );
+  }
+  if (!postalCode || postalCode.trim().length < 2) {
+    return new Response(
+      JSON.stringify({ error: "Unesite validan poštanski broj." }),
+      {
+        status: 400,
+      }
+    );
+  }
+  if (!city || city.trim().length < 2) {
+    return new Response(JSON.stringify({ error: "Unesite validan grad." }), {
+      status: 400,
+    });
+  }
+  if (!fullName || fullName.trim().length < 3) {
+    return new Response(JSON.stringify({ error: "Unesite ime i prezime." }), {
+      status: 400,
+    });
   }
 
   if (!address || address.trim().length < 5) {
@@ -56,6 +83,10 @@ export async function POST(req) {
         note,
         phone,
         address,
+        country,
+        postalCode,
+        city,
+        fullName,
         user: { connect: { id: user.id } },
       },
     });

@@ -25,10 +25,10 @@ export default async function AdminOrdersPage() {
   return (
     <div className="max-w-5xl mx-auto mt-10 p-6 bg-white rounded shadow">
       <h1 className="text-2xl font-bold mb-6 text-[color:var(--color-dark-olive)]">
-        All Orders
+        Porudžbine
       </h1>
       {orders.length === 0 ? (
-        <p>No orders found.</p>
+        <p>Nema porudžbina.</p>
       ) : (
         <table className="w-full table-auto border border-gray-300 text-sm">
           <thead className="bg-[color:var(--color-dark-olive)] text-[color:var(--color-cornsilk)]">
