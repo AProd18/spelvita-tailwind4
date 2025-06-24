@@ -44,7 +44,7 @@ export default function Navbar() {
               {session?.user?.role === "admin" && (
                 <li>
                   <Link
-                    href="/admin/availability"
+                    href="/admin"
                     className="hover:text-[color:var(--color-laurel-green)] transition-colors flex items-center space-x-1"
                   >
                     Kontrolni centar

@@ -20,14 +20,20 @@ export default function AdminDashboardPage() {
           fetch("/api/admin/orders/count"),
           fetch("/api/availability"),
         ]);
+        console.log("Orders status:", ordersRes.status);
 
         const usersData = await usersRes.json();
         const ordersData = await ordersRes.json();
+        console.log("Orders response:", ordersData);
+
         const availabilityData = await availabilityRes.json();
+
+        console.log("Orders data for stats:", ordersData);
+        console.log("Orders count:", ordersData.count);
 
         setStats({
           users: usersData.count || 0,
-          orders: ordersData.count || 0,
+          orders: typeof ordersData.count === "number" ? ordersData.count : 0,
           availability: availabilityData.quantity || 0,
         });
       } catch (error) {
