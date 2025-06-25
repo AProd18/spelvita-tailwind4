@@ -19,7 +19,6 @@ export default function OrderPage() {
   const [address, setAddress] = useState("");
 
   const [country, setCountry] = useState("");
-  const [phoneCountry, setPhoneCountry] = useState("RS");
   const [postalCode, setPostalCode] = useState("");
   const [city, setCity] = useState("");
   const [fullName, setFullName] = useState("");
@@ -90,10 +89,11 @@ export default function OrderPage() {
 
       <div className="border p-4 rounded bg-[color:var(--color-cornsilk)] text-[color:var(--color-dark-olive)]">
         <p>
-          <strong>Proizvod:</strong> 1 tabla spelte (28 kocki)
+          <strong>Proizvod:</strong> {quantity}{" "}
+          {quantity === 1 ? "tabla" : "table"} spelte ({quantity * 28} kocki)
         </p>
         <p>
-          <strong>Cena:</strong> 1500 RSD po tabli
+          <strong>Cena:</strong> {(quantity * 1500).toLocaleString("sr-RS")} RSD
         </p>
       </div>
 
@@ -222,7 +222,7 @@ export default function OrderPage() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-[color:var(--color-dark-olive)] text-[color:var(--color-cornsilk)] font-semibold py-2 px-4 rounded hover:bg-[color:var(--color-laurel-green)] transition"
+          className="w-full bg-[color:var(--color-dark-olive)] text-[color:var(--color-cornsilk)] font-semibold py-2 px-4 rounded hover:bg-[color:var(--color-laurel-green)] transition cursor-pointer"
         >
           {loading ? "Slanje..." : "Pošalji porudžbinu"}
         </button>
