@@ -25,7 +25,7 @@ export default async function AdminOrdersPage() {
   return (
     <div className="max-w-5xl mx-auto mt-10 p-6 bg-white rounded shadow">
       <h1 className="text-2xl font-bold mb-6 text-[color:var(--color-dark-olive)]">
-        Porudžbine
+        Lista porudžbina
       </h1>
       {orders.length === 0 ? (
         <p>Nema porudžbina.</p>

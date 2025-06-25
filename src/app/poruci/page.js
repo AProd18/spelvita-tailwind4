@@ -3,6 +3,8 @@
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { isValidPhoneNumber } from "libphonenumber-js/max";
+import { parsePhoneNumberFromString } from "libphonenumber-js/max";
 
 export default function OrderPage() {
   const { data: session, status } = useSession();
@@ -28,13 +30,32 @@ export default function OrderPage() {
     setSuccess("");
 
     try {
+      // Ako korisnik unese lokalni broj tipa 064..., pretvaramo ga u +38164...
+      let formattedPhone = phone.trim();
+      if (/^06\d{6,}$/.test(formattedPhone)) {
+        formattedPhone = "+381" + formattedPhone.slice(1);
+      }
+
+      const parsed = parsePhoneNumberFromString(formattedPhone, "RS");
+
+      const isValid =
+        parsed?.isValid() && ["RS", "BA", "HR", "ME"].includes(parsed.country);
+
+      if (!isValid) {
+        setError(
+          "Unesite ispravan broj telefona sa pozivnim brojem (npr. +3816xxxxxxx)"
+        );
+        setLoading(false);
+        return;
+      }
+
       const res = await fetch("/api/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           quantity,
           note,
-          phone,
+          phone: parsed.number,
           address,
           postalCode,
           city,
@@ -69,7 +90,7 @@ export default function OrderPage() {
   if (!session) return <p>Prijavi se da bi poručio proizvod.</p>;
 
   return (
-    <div className="max-w-xl mx-auto mt-10 bg-white p-6 rounded shadow space-y-6">
+    <div className="max-w-2xl mx-auto mt-10 bg-white p-6 rounded shadow space-y-6">
       <h1 className="text-2xl font-bold text-[color:var(--color-dark-olive)]">
         Poruči Elixir od spelte
       </h1>
@@ -162,17 +183,32 @@ export default function OrderPage() {
             />
           </div>
 
-          <div>
+          <div className="">
             <label className="block font-semibold mb-1">
               Kontakt telefon *
             </label>
-            <input
-              type="text"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              className="w-full border rounded p-2"
-              required
-            />
+            <div className="flex">
+              <select
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+                className="border rounded-l p-2 bg-white text-sm w-[90px]"
+                required
+              >
+                <option value="">Zemlja</option>
+                <option value="RS">🇷🇸 +381</option>
+                <option value="BA">🇧🇦 +387</option>
+                <option value="HR">🇭🇷 +385</option>
+                <option value="ME">🇲🇪 +382</option>
+              </select>
+              <input
+                type="tel"
+                placeholder="641234567"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="border border-l-0 rounded-r p-2 w-full"
+                required
+              />
+            </div>
           </div>
         </div>
 
