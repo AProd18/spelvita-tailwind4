@@ -14,11 +14,12 @@ export default async function AdminDashboardPage() {
   const usersCount = await prisma.user.count();
   const ordersCount = await prisma.order.count();
   const availability = await prisma.availability.findFirst();
+  const experiencesCount = await prisma.experience.count();
 
   return (
     <div className="space-y-6">
       <h1 className="text-3xl font-bold mb-6">Statistika</h1>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <div className="bg-white rounded shadow p-6">
           <h2 className="text-lg font-semibold mb-2">
             👤 Registrovani korisnici
@@ -32,6 +33,10 @@ export default async function AdminDashboardPage() {
         <div className="bg-white rounded shadow p-6">
           <h2 className="text-lg font-semibold mb-2">🌾 Dostupno tabli žita</h2>
           <p className="text-3xl font-bold">{availability?.quantity || 0}</p>
+        </div>
+        <div className="bg-white rounded shadow p-6">
+          <h2 className="text-lg font-semibold mb-2">🗣️ Broj iskustava</h2>
+          <p className="text-3xl font-bold">{experiencesCount}</p>
         </div>
       </div>
     </div>

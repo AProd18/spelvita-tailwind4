@@ -8,6 +8,7 @@ const navItems = [
   { href: "/admin", label: "📊 Statistika" },
   { href: "/admin/availability", label: "🌾 Dostupnost" },
   { href: "/admin/orders", label: "🧾 Porudžbine" },
+  { href: "/admin/experiences", label: "📝 Iskustva" },
   { href: "/admin/users", label: "👤 Korisnici" },
 ];
 
