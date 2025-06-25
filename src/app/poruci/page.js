@@ -3,8 +3,8 @@
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { isValidPhoneNumber } from "libphonenumber-js/max";
 import { parsePhoneNumberFromString } from "libphonenumber-js/max";
+import PhoneInput from "react-phone-input-2";
 
 export default function OrderPage() {
   const { data: session, status } = useSession();
@@ -19,6 +19,7 @@ export default function OrderPage() {
   const [address, setAddress] = useState("");
 
   const [country, setCountry] = useState("");
+  const [phoneCountry, setPhoneCountry] = useState("RS");
   const [postalCode, setPostalCode] = useState("");
   const [city, setCity] = useState("");
   const [fullName, setFullName] = useState("");
@@ -30,21 +31,13 @@ export default function OrderPage() {
     setSuccess("");
 
     try {
-      // Ako korisnik unese lokalni broj tipa 064..., pretvaramo ga u +38164...
-      let formattedPhone = phone.trim();
-      if (/^06\d{6,}$/.test(formattedPhone)) {
-        formattedPhone = "+381" + formattedPhone.slice(1);
-      }
-
-      const parsed = parsePhoneNumberFromString(formattedPhone, "RS");
+      const parsed = parsePhoneNumberFromString("+" + phone);
 
       const isValid =
-        parsed?.isValid() && ["RS", "BA", "HR", "ME"].includes(parsed.country);
+        parsed?.isValid() && ["RS", "BA", "HR", "ME"].includes(parsed?.country);
 
       if (!isValid) {
-        setError(
-          "Unesite ispravan broj telefona sa pozivnim brojem (npr. +3816xxxxxxx)"
-        );
+        setError("Unesite ispravan broj telefona (bez nule, npr. 641234567)");
         setLoading(false);
         return;
       }
@@ -165,7 +158,7 @@ export default function OrderPage() {
             <label className="block font-semibold mb-1">Adresa *</label>
             <input
               type="text"
-              value={address} // address nije u state, treba dodati!
+              value={address}
               onChange={(e) => setAddress(e.target.value)}
               className="w-full border rounded p-2"
               required
@@ -187,28 +180,29 @@ export default function OrderPage() {
             <label className="block font-semibold mb-1">
               Kontakt telefon *
             </label>
-            <div className="flex">
-              <select
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
-                className="border rounded-l p-2 bg-white text-sm w-[90px]"
-                required
-              >
-                <option value="">Zemlja</option>
-                <option value="RS">🇷🇸 +381</option>
-                <option value="BA">🇧🇦 +387</option>
-                <option value="HR">🇭🇷 +385</option>
-                <option value="ME">🇲🇪 +382</option>
-              </select>
-              <input
-                type="tel"
-                placeholder="641234567"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className="border border-l-0 rounded-r p-2 w-full"
-                required
-              />
-            </div>
+            <PhoneInput
+              country={"rs"}
+              value={phone}
+              onChange={(value, country) => {
+                setPhone(value);
+              }}
+              inputStyle={{
+                width: "100%",
+                height: "40px",
+                borderRadius: "0.375rem",
+                border: "1px solid #d1d5db",
+                paddingLeft: "50px",
+              }}
+              buttonStyle={{
+                borderTopLeftRadius: "0.375rem",
+                borderBottomLeftRadius: "0.375rem",
+              }}
+              enableSearch={true}
+              masks={{ rs: ".. ... ...." }}
+              onlyCountries={["rs", "ba", "hr", "me"]}
+              placeholder="641234567"
+              required
+            />
           </div>
         </div>
 
