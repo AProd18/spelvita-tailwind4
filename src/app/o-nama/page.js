@@ -1,11 +1,7 @@
-// src/app/o-nama/page.js
-
 export default function AboutPage() {
   return (
     <section className="max-w-5xl mx-auto px-6 py-20 space-y-8">
       <div className="bg-gradient-to-b from-[color:var(--color-dark-olive)] to-[color:var(--color-light-olive)] rounded-lg shadow-lg p-10 text-[color:var(--color-cornsilk)]">
-        {/* <h1 className="text-4xl font-bold mb-8">O nama</h1> */}
-
         <p className="text-lg mb-6 leading-relaxed">
           Zdravo svima, zovem se <strong>Sladjana Brankov</strong> i dolazim iz
           prelepe Vojvodine — Banata, iz mesta Vršac. Pre oko deset godina, moja

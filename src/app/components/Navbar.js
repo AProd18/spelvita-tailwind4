@@ -30,14 +30,6 @@ export default function Navbar() {
               <span>Kontakt</span>
             </Link>
           </li>
-          {/* <li className="flex items-center space-x-1">
-            <Link
-              href="/faq"
-              className="hover:text-[color:var(--color-laurel-green)] transition-colors flex items-center space-x-1"
-            >
-              <span>FAQ</span>
-            </Link>
-          </li> */}
 
           {session ? (
             <>
@@ -71,14 +63,6 @@ export default function Navbar() {
                   <span>Prijava / Registracija</span>
                 </Link>
               </li>
-              {/* <li>
-                <Link
-                  href="/register"
-                  className="hover:text-[color:var(--color-laurel-green)] transition-colors"
-                >
-                  Registracija
-                </Link>
-              </li> */}
             </>
           )}
         </ul>

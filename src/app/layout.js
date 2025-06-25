@@ -1,5 +1,3 @@
-import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
 import "./globals.css";
 import HideOnAdminWrapper from "./HideOnAdminWrapper";
 import { Providers } from "./providers";
