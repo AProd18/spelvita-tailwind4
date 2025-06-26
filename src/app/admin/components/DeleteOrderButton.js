@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { deleteOrder } from "@/app/admin/orders/delete-order";
+import { deleteOrder } from "../orders/delete-order";
 
 export default function DeleteOrderButton({ orderId }) {
   const [showModal, setShowModal] = useState(false);

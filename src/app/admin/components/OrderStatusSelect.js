@@ -1,7 +1,7 @@
 "use client";
 
 import { useTransition } from "react";
-import { updateOrderStatus } from "@/app/admin/orders/update-order-status";
+import { updateOrderStatus } from "../orders/update-order-status";
 
 export default function OrderStatusSelect({ orderId, currentStatus }) {
   const [isPending, startTransition] = useTransition();
