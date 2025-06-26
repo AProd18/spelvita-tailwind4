@@ -44,6 +44,14 @@ export default function Navbar() {
                 </li>
               )}
               <li>
+                <Link
+                  href="/moje-porudzbine"
+                  className="hover:text-[color:var(--color-laurel-green)] transition-colors flex items-center space-x-1 uppercase  cursor-pointer"
+                >
+                  <span>moje porudzbine</span>
+                </Link>
+              </li>
+              <li>
                 <button
                   onClick={() => signOut()}
                   className="hover:text-[color:var(--color-laurel-green)] transition-colors flex items-center space-x-1 uppercase  cursor-pointer"
