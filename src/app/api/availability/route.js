@@ -17,7 +17,7 @@ export async function GET() {
 }
 
 export async function PUT(request) {
-  const session = await getServerSession({ req: request, ...authOptions });
+  const session = await getServerSession(authOptions); // ✅ ispravljeno
 
   if (!session || session.user.role !== "admin") {
     return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
