@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import prisma from "@/lib/prisma";
 import OrderStatusSelect from "../components/OrderStatusSelect";
+import DeleteOrderButton from "../components/DeleteOrderButton";
 
 export default async function AdminOrdersPage() {
   const session = await getServerSession(authOptions);
@@ -48,6 +49,7 @@ export default async function AdminOrdersPage() {
                 <th className="p-2 border">Napomena</th>
                 <th className="p-2 border">Datum</th>
                 <th className="p-2 border">Status</th>
+                <th className="p-2 border">Obriši</th>
               </tr>
             </thead>
             <tbody>
@@ -76,6 +78,9 @@ export default async function AdminOrdersPage() {
                       orderId={order.id}
                       currentStatus={order.status}
                     />
+                  </td>
+                  <td className="p-2 border">
+                    <DeleteOrderButton orderId={order.id} />
                   </td>
                 </tr>
               ))}
