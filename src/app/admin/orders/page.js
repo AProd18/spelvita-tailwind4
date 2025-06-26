@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import prisma from "@/lib/prisma";
+import OrderStatusSelect from "../components/OrderStatusSelect";
 
 export default async function AdminOrdersPage() {
   const session = await getServerSession(authOptions);
@@ -46,6 +47,7 @@ export default async function AdminOrdersPage() {
                 <th className="p-2 border">Kontakt telefon</th>
                 <th className="p-2 border">Napomena</th>
                 <th className="p-2 border">Datum</th>
+                <th className="p-2 border">Status</th>
               </tr>
             </thead>
             <tbody>
@@ -68,6 +70,12 @@ export default async function AdminOrdersPage() {
                       dateStyle: "medium",
                       timeStyle: "short",
                     })}
+                  </td>
+                  <td className="p-2 border">
+                    <OrderStatusSelect
+                      orderId={order.id}
+                      currentStatus={order.status}
+                    />
                   </td>
                 </tr>
               ))}

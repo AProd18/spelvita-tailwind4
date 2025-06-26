@@ -69,7 +69,7 @@ export default function OrderPage() {
       setPhone("");
 
       setTimeout(() => {
-        router.push("/");
+        router.push("/moje-porudzbine");
       }, 3000);
     } catch (err) {
       setError(err.message);

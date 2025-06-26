@@ -87,6 +87,7 @@ export async function POST(req) {
         city,
         fullName,
         user: { connect: { id: user.id } },
+        status: "pending",
       },
     });
 

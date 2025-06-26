@@ -89,5 +89,6 @@ model Order {
   fullName   String?       
   postalCode String?       
   createdAt  DateTime @default(now())
+  status     String   @default("pending") 
 }
 
