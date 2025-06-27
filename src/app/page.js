@@ -11,9 +11,7 @@ async function fetchExperiences() {
 }
 
 async function fetchAvailability() {
-  const res = await fetch(
-    `${process.env.NEXTAUTH_URL || "http://localhost:3000"}/api/availability`
-  );
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/availability`);
   if (!res.ok) {
     throw new Error("Failed to fetch availability");
   }
