@@ -1,22 +1,19 @@
 import Link from "next/link";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/authOptions";
+import prisma from "@/lib/prisma";
 
 async function fetchExperiences() {
-  const res = await fetch(
-    `${process.env.NEXTAUTH_URL || "http://localhost:3000"}/api/experience`
-  );
-  if (!res.ok) {
-    throw new Error("Failed to fetch experiences");
-  }
-  return res.json();
+  return await prisma.experience.findMany({
+    orderBy: { createdAt: "desc" },
+  });
 }
 
 async function fetchAvailability() {
-  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/availability`);
-  if (!res.ok) {
-    throw new Error("Failed to fetch availability");
-  }
-  const data = await res.json();
-  return data.quantity || 0;
+  const latest = await prisma.availability.findFirst({
+    orderBy: { updatedAt: "desc" },
+  });
+  return latest?.quantity ?? 0;
 }
 
 export default async function Home() {
