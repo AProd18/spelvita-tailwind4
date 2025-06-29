@@ -5,7 +5,7 @@ import { useSession, signOut } from "next-auth/react";
 import { PersonOutline } from "@mui/icons-material";
 import { useState, useRef, useEffect } from "react";
 
-export default function SessionNav() {
+export default function SessionNav({ closeMobileMenu = () => {} }) {
   const { data: session } = useSession();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -26,6 +26,7 @@ export default function SessionNav() {
         <Link
           href="/login"
           className="hover:text-[color:var(--color-laurel-green)] transition-colors flex items-center space-x-1"
+          onClick={closeMobileMenu}
         >
           <PersonOutline fontSize="small" />
           <span>Prijava / Registracija</span>
@@ -53,7 +54,10 @@ export default function SessionNav() {
             <Link
               href="/moje-porudzbine"
               className="block px-4 py-2 hover:bg-[color:var(--color-laurel-green)] hover:text-[color:var(--color-dark-olive)] transition-colors"
-              onClick={() => setDropdownOpen(false)}
+              onClick={() => {
+                setDropdownOpen(false);
+                closeMobileMenu();
+              }}
             >
               Moje porudžbine
             </Link>
@@ -64,7 +68,10 @@ export default function SessionNav() {
               <Link
                 href="/admin"
                 className="block px-4 py-2 hover:bg-[color:var(--color-laurel-green)] hover:text-[color:var(--color-dark-olive)] transition-colors"
-                onClick={() => setDropdownOpen(false)}
+                onClick={() => {
+                  setDropdownOpen(false);
+                  closeMobileMenu();
+                }}
               >
                 Kontrolni centar
               </Link>
@@ -76,6 +83,7 @@ export default function SessionNav() {
               onClick={() => {
                 signOut();
                 setDropdownOpen(false);
+                closeMobileMenu();
               }}
               className="w-full text-left text-red-500 px-4 py-2 hover:bg-[color:var(--color-laurel-green)] hover:text-[color:var(--color-dark-olive)] transition-colors uppercase cursor-pointer"
             >
