@@ -24,6 +24,11 @@ export default async function AdminOrdersPage() {
     },
   });
 
+  await prisma.order.updateMany({
+    where: { isViewed: false },
+    data: { isViewed: true },
+  });
+
   return (
     <div className="max-w-5xl mx-auto mt-10 p-6 bg-white rounded shadow">
       <h1 className="text-2xl font-bold mb-6 text-[color:var(--color-dark-olive)]">
@@ -32,7 +37,6 @@ export default async function AdminOrdersPage() {
       {orders.length === 0 ? (
         <p>Nema porudžbina.</p>
       ) : (
-        // Ovaj div daje horizontalni scroll samo tabeli
         <div className="overflow-x-auto whitespace-nowrap">
           <table className="w-full table-auto border border-gray-300 text-sm min-w-[900px]">
             <thead className="bg-[color:var(--color-dark-olive)] text-[color:var(--color-cornsilk)]">

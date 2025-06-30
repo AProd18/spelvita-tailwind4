@@ -10,7 +10,6 @@ export default async function AdminDashboardPage() {
     redirect("/");
   }
 
-  // fetch-ovanje podataka sa servera (prisma)
   const usersCount = await prisma.user.count();
   const ordersCount = await prisma.order.count();
   const availability = await prisma.availability.findFirst();

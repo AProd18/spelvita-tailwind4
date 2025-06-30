@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { signOut } from "next-auth/react";
+import { useEffect, useState } from "react";
 
 const navItems = [
   { href: "/admin", label: "📊 Statistika" },
@@ -15,6 +16,24 @@ const navItems = [
 export default function AdminSidebar() {
   const pathname = usePathname();
   const router = useRouter();
+  const [unseenCount, setUnseenCount] = useState(0);
+
+  useEffect(() => {
+    const fetchUnseen = async () => {
+      try {
+        const res = await fetch("/api/admin/orders/unseen");
+        const data = await res.json();
+        setUnseenCount(data.unseenCount || 0);
+      } catch (err) {
+        console.error(
+          "Greška prilikom učitavanja broja novih porudžbina:",
+          err
+        );
+      }
+    };
+
+    fetchUnseen();
+  }, []);
 
   const handleLogout = async () => {
     await signOut({ redirect: false });
@@ -47,14 +66,21 @@ export default function AdminSidebar() {
                 key={href}
                 href={href}
                 className={`px-4 py-3 rounded-md transition-colors duration-300
-                  ${
-                    isActive
-                      ? "bg-[color:var(--color-laurel-green)] text-[color:var(--color-cornsilk)]"
-                      : "text-[color:var(--color-cornsilk)] hover:bg-[color:var(--color-laurel-green)] hover:text-[color:var(--color-cornsilk)]"
-                  }
-                `}
+        ${
+          isActive
+            ? "bg-[color:var(--color-laurel-green)] text-[color:var(--color-cornsilk)]"
+            : "text-[color:var(--color-cornsilk)] hover:bg-[color:var(--color-laurel-green)] hover:text-[color:var(--color-cornsilk)]"
+        }
+      `}
               >
-                {label}
+                <span className="flex items-center gap-2">
+                  {label}
+                  {href === "/admin/orders" && unseenCount > 0 && (
+                    <span className="ml-2 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+                      {unseenCount}
+                    </span>
+                  )}
+                </span>
               </Link>
             );
           })}
