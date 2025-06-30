@@ -35,6 +35,12 @@ export default function AdminSidebar() {
     fetchUnseen();
   }, []);
 
+  useEffect(() => {
+    if (pathname === "/admin/orders") {
+      setUnseenCount(0);
+    }
+  }, [pathname]);
+
   const handleLogout = async () => {
     await signOut({ redirect: false });
     router.push("/login");
