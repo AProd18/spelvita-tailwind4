@@ -23,8 +23,11 @@ export default function SessionNav({ closeMobileMenu = () => {} }) {
         console.error("Greska kod fetch notifikacija:", err);
       }
     }
-    fetchUnread();
-  }, []);
+
+    if (session?.user) {
+      fetchUnread();
+    }
+  }, [session]);
 
   useEffect(() => {
     if (pathname === "/moje-porudzbine") {
