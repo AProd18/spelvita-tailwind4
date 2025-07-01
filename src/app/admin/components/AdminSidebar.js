@@ -79,10 +79,10 @@ export default function AdminSidebar() {
         }
       `}
               >
-                <span className="flex items-center gap-2">
-                  {label}
+                <span className="flex items-center justify-between gap-2 w-full whitespace-nowrap">
+                  <span className="truncate">{label}</span>
                   {href === "/admin/orders" && unseenCount > 0 && (
-                    <span className="ml-2 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+                    <span className="bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full min-w-[20px] text-center">
                       {unseenCount}
                     </span>
                   )}
