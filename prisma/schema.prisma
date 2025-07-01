@@ -92,5 +92,6 @@ model Order {
   updatedAt DateTime  @updatedAt @default(now())
   status     String   @default("pending") 
   isViewed   Boolean  @default(false)
+  isNotified Boolean  @default(false)
 }
 

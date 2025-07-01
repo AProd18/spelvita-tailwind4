@@ -10,6 +10,16 @@ export default async function MojePorudzbinePage() {
     redirect("/login");
   }
 
+  await prisma.order.updateMany({
+    where: {
+      userId: session.user.id,
+      isNotified: false,
+    },
+    data: {
+      isNotified: true,
+    },
+  });
+
   const orders = await prisma.order.findMany({
     where: { userId: session.user.id },
     orderBy: { createdAt: "desc" },

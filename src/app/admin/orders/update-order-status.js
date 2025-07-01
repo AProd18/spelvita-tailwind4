@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 export async function updateOrderStatus(orderId, newStatus) {
   await prisma.order.update({
     where: { id: orderId },
-    data: { status: newStatus },
+    data: { status: newStatus, isNotified: false },
   });
 
   revalidatePath("/admin/orders");
