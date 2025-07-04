@@ -17,7 +17,7 @@ export default async function AdminDashboardPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold mb-6">Statistika</h1>
+      {/* <h1 className="text-3xl font-bold mb-6">Statistika</h1> */}
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <div className="bg-white rounded shadow p-6">
           <h2 className="text-lg font-semibold mb-2">

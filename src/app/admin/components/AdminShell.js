@@ -29,7 +29,7 @@ export default function AdminShell({ children }) {
         />
       )}
 
-      <main className="flex-1 p-4 md:p-12 overflow-auto w-full z-10">
+      <main className="flex-1 p-4 md:p-12 mt-14 overflow-auto w-full z-10">
         {children}
       </main>
     </div>
