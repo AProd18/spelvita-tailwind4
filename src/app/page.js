@@ -33,7 +33,7 @@ export default async function Home() {
         <h2 className="text-4xl md:text-5xl font-bold mb-4">
           Oseti snagu prirode u svakoj kapljici
         </h2>
-        <p className="text-lg md:text-xl max-w-2xl mx-auto">
+        <p className="text-md md:text-xl max-w-2xl mx-auto">
           Elixir od spelte je 100% prirodan napitak od zelenog žita — bez
           dodataka, bez kompromisa. Pravo iz srca prirode, za tvoje zdravlje i
           energiju.
