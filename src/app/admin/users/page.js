@@ -7,7 +7,7 @@ export default async function AdminUsersPage() {
   const session = await getServerSession(authOptions);
 
   if (!session || session.user.role !== "admin") {
-    return redirect("/login"); // ili možeš redirect na neku drugu stranicu
+    return redirect("/login");
   }
 
   const users = await prisma.user.findMany({
@@ -34,7 +34,6 @@ export default async function AdminUsersPage() {
           <table className="w-full table-auto border border-gray-300">
             <thead className="bg-[color:var(--color-dark-olive)] text-[color:var(--color-cornsilk)]">
               <tr>
-                {/* <th className="p-2 border">ID</th> */}
                 <th className="p-2 border">Korisničko ime</th>
                 <th className="p-2 border">Email</th>
                 <th className="p-2 border">Uloga</th>
@@ -44,7 +43,6 @@ export default async function AdminUsersPage() {
             <tbody>
               {users.map((user) => (
                 <tr key={user.id} className="text-center">
-                  {/* <td className="p-2 border">{user.id}</td> */}
                   <td className="p-2 border">{user.name}</td>
                   <td className="p-2 border">{user.email}</td>
                   <td className="p-2 border">{user.role}</td>

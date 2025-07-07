@@ -59,14 +59,18 @@ export default async function AdminOrdersPage() {
             <tbody>
               {orders.map((order) => (
                 <tr key={order.id} className="text-center">
-                  <td className="p-2 border">{order.user?.name || "N/A"}</td>
+                  <td className="p-2 border">
+                    <strong> {order.user?.name || "N/A"}</strong>
+                  </td>
                   <td className="p-2 border">{order.user?.email || "N/A"}</td>
                   <td className="p-2 border">{order.quantity}</td>
                   <td className="p-2 border">{order.country}</td>
                   <td className="p-2 border">{order.postalCode}</td>
                   <td className="p-2 border">{order.city}</td>
                   <td className="p-2 border">{order.address}</td>
-                  <td className="p-2 border">{order.fullName}</td>
+                  <td className="p-2 border">
+                    <strong>{order.fullName}</strong>
+                  </td>
                   <td className="p-2 border">{order.phone}</td>
                   <td className="p-2 border">
                     {order.note ? order.note : <em>-</em>}
