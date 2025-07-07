@@ -1,10 +1,11 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { parsePhoneNumberFromString } from "libphonenumber-js/max";
 import PhoneInput from "react-phone-input-2";
+import HistoryIcon from "@mui/icons-material/History";
 
 export default function OrderPage() {
   const { data: session, status } = useSession();
@@ -22,6 +23,24 @@ export default function OrderPage() {
   const [postalCode, setPostalCode] = useState("");
   const [city, setCity] = useState("");
   const [fullName, setFullName] = useState("");
+
+  const [lastOrder, setLastOrder] = useState(null);
+
+  // Fetch last order on mount
+  useEffect(() => {
+    const fetchLastOrder = async () => {
+      try {
+        const res = await fetch("/api/last-order");
+        if (!res.ok) return;
+        const data = await res.json();
+        setLastOrder(data);
+      } catch (err) {
+        console.error("Failed to fetch last order:", err);
+      }
+    };
+
+    fetchLastOrder();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -86,6 +105,25 @@ export default function OrderPage() {
       <h1 className="text-2xl font-bold text-[color:var(--color-dark-olive)]">
         Poruči Elixir od spelte
       </h1>
+
+      {lastOrder && (
+        <button
+          type="button"
+          aria-label="Koristi prethodne podatke"
+          onClick={() => {
+            setFullName(lastOrder.fullName || "");
+            setAddress(lastOrder.address || "");
+            setPostalCode(lastOrder.postalCode || "");
+            setCity(lastOrder.city || "");
+            setCountry(lastOrder.country || "");
+            setPhone(lastOrder.phone || "");
+          }}
+          className="flex items-center gap-2 px-4 py-2 text-sm rounded-md bg-[color:var(--color-cornsilk)] text-[color:var(--color-dark-olive)] border border-[color:var(--color-dark-olive)] shadow-sm hover:bg-[color:var(--color-dark-olive)] hover:text-[color:var(--color-cornsilk)] transition font-medium mb-4"
+        >
+          <HistoryIcon fontSize="small" />
+          <span className="hidden md:inline">Koristi prethodne podatke</span>
+        </button>
+      )}
 
       <div className="border p-4 rounded bg-[color:var(--color-cornsilk)] text-[color:var(--color-dark-olive)]">
         <p>
