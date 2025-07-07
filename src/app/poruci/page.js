@@ -118,7 +118,7 @@ export default function OrderPage() {
             setCountry(lastOrder.country || "");
             setPhone(lastOrder.phone || "");
           }}
-          className="flex items-center gap-2 px-4 py-2 text-sm rounded-md bg-[color:var(--color-cornsilk)] text-[color:var(--color-dark-olive)] border border-[color:var(--color-dark-olive)] shadow-sm hover:bg-[color:var(--color-dark-olive)] hover:text-[color:var(--color-cornsilk)] transition font-medium mb-4"
+          className="flex items-center gap-2 px-4 py-2 text-sm rounded-md bg-[color:var(--color-dark-olive)] text-[color:var(--color-cornsilk)] border border-[color:var(--color-dark-olive)] shadow-sm hover:bg-[color:var(--color-laurel-green)] hover:text-[color:var(--color-cornsilk)] transition font-medium mb-4 cursor-pointer"
         >
           <HistoryIcon fontSize="small" />
           <span className="hidden md:inline">Koristi prethodne podatke</span>
