@@ -3,23 +3,13 @@
 import { useTransition } from "react";
 import { updateOrderStatus } from "../orders/update-order-status";
 
-export default function OrderStatusSelect({
-  orderId,
-  currentStatus,
-  onStatusChange,
-}) {
+export default function OrderStatusSelect({ orderId, currentStatus }) {
   const [isPending, startTransition] = useTransition();
 
   const handleChange = (e) => {
     const newStatus = e.target.value;
     startTransition(() => {
-      updateOrderStatus(orderId, newStatus).then((res) => {
-        if (res.success) {
-          onStatusChange(orderId, newStatus);
-        } else {
-          alert("Greška pri ažuriranju statusa: " + res.message);
-        }
-      });
+      updateOrderStatus(orderId, newStatus);
     });
   };
 
