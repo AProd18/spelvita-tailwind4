@@ -21,6 +21,8 @@ export default function AvailabilityForm({ initialQuantity }) {
     const data = await res.json();
     setLoading(false);
     setFeedback(data.message || "Ažurirano!");
+
+    await fetch("/api/revalidate/availability", { method: "POST" });
   };
 
   return (

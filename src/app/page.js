@@ -1,7 +1,11 @@
+export const revalidate = 3600;
+
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
 import prisma from "@/lib/prisma";
+import { unstable_cache } from "next/cache";
+import { fetchAvailability } from "@/lib/availability";
 
 async function fetchExperiences() {
   return await prisma.experience.findMany({
@@ -9,12 +13,9 @@ async function fetchExperiences() {
   });
 }
 
-async function fetchAvailability() {
-  const latest = await prisma.availability.findFirst({
-    orderBy: { updatedAt: "desc" },
-  });
-  return latest?.quantity ?? 0;
-}
+const getAvailability = unstable_cache(fetchAvailability, ["availability"], {
+  tags: ["availability"],
+});
 
 export default async function Home() {
   let experiences = [];
@@ -22,7 +23,7 @@ export default async function Home() {
 
   try {
     experiences = await fetchExperiences();
-    availability = await fetchAvailability();
+    availability = await getAvailability();
   } catch (error) {
     console.error(error);
   }
