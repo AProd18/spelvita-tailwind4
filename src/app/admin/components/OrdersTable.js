@@ -31,8 +31,8 @@ export default function OrdersTable({ initialOrders }) {
           onClick={() => setActiveStatus("pending")}
           className={`px-4 py-2 rounded ${
             activeStatus === "pending"
-              ? "bg-[color:var(--color-dark-olive)] text-white"
-              : "bg-gray-200"
+              ? "bg-yellow-500 text-white"
+              : "bg-yellow-300"
           }`}
         >
           Na čekanju
@@ -41,8 +41,8 @@ export default function OrdersTable({ initialOrders }) {
           onClick={() => setActiveStatus("approved")}
           className={`px-4 py-2 rounded ${
             activeStatus === "approved"
-              ? "bg-[color:var(--color-dark-olive)] text-white"
-              : "bg-gray-200"
+              ? "bg-green-600 text-white"
+              : "bg-green-400"
           }`}
         >
           Prihvaćene
@@ -50,9 +50,7 @@ export default function OrdersTable({ initialOrders }) {
         <button
           onClick={() => setActiveStatus("denied")}
           className={`px-4 py-2 rounded ${
-            activeStatus === "denied"
-              ? "bg-[color:var(--color-dark-olive)] text-white"
-              : "bg-gray-200"
+            activeStatus === "denied" ? "bg-red-600 text-white" : "bg-red-400"
           }`}
         >
           Odbijene
@@ -84,14 +82,18 @@ export default function OrdersTable({ initialOrders }) {
             <tbody>
               {filteredOrders.map((order) => (
                 <tr key={order.id} className="text-center">
-                  <td className="p-2 border">{order.user?.name || "N/A"}</td>
+                  <td className="p-2 border">
+                    <strong> {order.user?.name || "N/A"}</strong>
+                  </td>
                   <td className="p-2 border">{order.user?.email || "N/A"}</td>
                   <td className="p-2 border">{order.quantity}</td>
                   <td className="p-2 border">{order.country}</td>
                   <td className="p-2 border">{order.postalCode}</td>
                   <td className="p-2 border">{order.city}</td>
                   <td className="p-2 border">{order.address}</td>
-                  <td className="p-2 border">{order.fullName}</td>
+                  <td className="p-2 border">
+                    <strong> {order.fullName}</strong>
+                  </td>
                   <td className="p-2 border">{order.phone}</td>
                   <td className="p-2 border">{order.note || <em>-</em>}</td>
                   <td className="p-2 border">
