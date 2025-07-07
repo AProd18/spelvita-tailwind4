@@ -11,7 +11,7 @@ export default function AdminShell({ children }) {
     <div className="min-h-screen flex bg-[color:var(--color-cornsilk)] text-[color:var(--color-dark-olive)] relative">
       <button
         onClick={() => setSidebarOpen(true)}
-        className="md:hidden fixed top-4 left-4 z-50 bg-[color:var(--color-dark-olive)] text-white p-2 rounded-full shadow-md"
+        className="md:hidden fixed top-4 left-4 z-50 bg-[color:var(--color-dark-olive)] text-white p-2 rounded shadow-md"
         aria-label="Otvori meni"
       >
         <MenuIcon />
