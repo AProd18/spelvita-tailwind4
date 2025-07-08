@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { deleteExperience } from "./deleteExperience";
+import { deleteExperience } from "./delete-experience";
 
 export default function ExperienceRow({ experience }) {
   const [confirming, setConfirming] = useState(false);

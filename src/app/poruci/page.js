@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { parsePhoneNumberFromString } from "libphonenumber-js/max";
 import PhoneInput from "react-phone-input-2";
 import HistoryIcon from "@mui/icons-material/History";
+import SuccessModal from "../components/SuccessModal";
 
 export default function OrderPage() {
   const { data: session, status } = useSession();
@@ -25,6 +26,7 @@ export default function OrderPage() {
   const [fullName, setFullName] = useState("");
 
   const [lastOrder, setLastOrder] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   // Fetch last order on mount
   useEffect(() => {
@@ -78,7 +80,7 @@ export default function OrderPage() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Greška prilikom slanja.");
 
-      setSuccess("Porudžbina uspešno poslata!");
+      setShowModal(true);
       setQuantity(1);
       setNote("");
       setCountry("");
@@ -89,7 +91,7 @@ export default function OrderPage() {
 
       setTimeout(() => {
         router.push("/moje-porudzbine");
-      }, 3000);
+      }, 4000);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -105,6 +107,8 @@ export default function OrderPage() {
       <h1 className="text-2xl font-bold text-[color:var(--color-dark-olive)]">
         Poruči Elixir od spelte
       </h1>
+
+      {showModal && <SuccessModal onClose={() => setShowModal(false)} />}
 
       {lastOrder && (
         <button
@@ -214,16 +218,14 @@ export default function OrderPage() {
             />
           </div>
 
-          <div className="">
+          <div>
             <label className="block font-semibold mb-1">
               Kontakt telefon *
             </label>
             <PhoneInput
               country={"rs"}
               value={phone}
-              onChange={(value, country) => {
-                setPhone(value);
-              }}
+              onChange={(value) => setPhone(value)}
               inputStyle={{
                 width: "100%",
                 height: "40px",
@@ -255,7 +257,6 @@ export default function OrderPage() {
         </div>
 
         {error && <p className="text-red-600">{error}</p>}
-        {success && <p className="text-green-600">{success}</p>}
 
         <button
           type="submit"
