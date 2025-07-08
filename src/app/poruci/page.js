@@ -51,7 +51,11 @@ export default function OrderPage() {
     setSuccess("");
 
     try {
-      const parsed = parsePhoneNumberFromString("+" + phone);
+      let cleanedPhone = phone.replace(/[^\d+]/g, "");
+      if (!cleanedPhone.startsWith("+")) {
+        cleanedPhone = "+" + cleanedPhone;
+      }
+      const parsed = parsePhoneNumberFromString(cleanedPhone);
 
       const isValid =
         parsed?.isValid() && ["RS", "BA", "HR", "ME"].includes(parsed?.country);
