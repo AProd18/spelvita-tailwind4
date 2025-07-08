@@ -4,57 +4,35 @@ import { useState } from "react";
 import OrderStatusSelect from "./OrderStatusSelect";
 import DeleteOrderButton from "./DeleteOrderButton";
 
-export default function OrdersTable({ initialOrders }) {
-  const [orders, setOrders] = useState(initialOrders);
-  const [activeStatus, setActiveStatus] = useState("pending");
-
-  const handleStatusChange = (orderId, newStatus) => {
-    setOrders((prevOrders) =>
-      prevOrders.map((order) =>
-        order.id === orderId ? { ...order, status: newStatus } : order
-      )
-    );
-  };
+export default function OrderStatusTabs({ orders }) {
+  const [statusFilter, setStatusFilter] = useState("pending");
 
   const filteredOrders = orders.filter(
-    (order) => order.status === activeStatus
+    (order) => order.status === statusFilter
   );
 
-  return (
-    <div className="max-w-7xl mx-auto mt-10 p-6 bg-white rounded shadow">
-      <h1 className="text-2xl font-bold mb-6 text-[color:var(--color-dark-olive)]">
-        Lista porudžbina
-      </h1>
+  const tabs = [
+    { key: "pending", label: "⏳ Na čekanju" },
+    { key: "approved", label: "✅ Prihvaćeno" },
+    { key: "denied", label: "❌ Odbijeno" },
+  ];
 
-      <div className="flex gap-4 mb-6">
-        <button
-          onClick={() => setActiveStatus("pending")}
-          className={`px-4 py-2 rounded ${
-            activeStatus === "pending"
-              ? "bg-yellow-500 text-white"
-              : "bg-yellow-300"
-          }`}
-        >
-          Na čekanju
-        </button>
-        <button
-          onClick={() => setActiveStatus("approved")}
-          className={`px-4 py-2 rounded ${
-            activeStatus === "approved"
-              ? "bg-green-600 text-white"
-              : "bg-green-400"
-          }`}
-        >
-          Prihvaćene
-        </button>
-        <button
-          onClick={() => setActiveStatus("denied")}
-          className={`px-4 py-2 rounded ${
-            activeStatus === "denied" ? "bg-red-600 text-white" : "bg-red-400"
-          }`}
-        >
-          Odbijene
-        </button>
+  return (
+    <div>
+      <div className="flex gap-2 mb-4">
+        {tabs.map((tab) => (
+          <button
+            key={tab.key}
+            onClick={() => setStatusFilter(tab.key)}
+            className={`px-3 py-1 rounded ${
+              statusFilter === tab.key
+                ? "bg-[color:var(--color-dark-olive)] text-[color:var(--color-cornsilk)]"
+                : "bg-gray-200 text-gray-800"
+            } transition`}
+          >
+            {tab.label}
+          </button>
+        ))}
       </div>
 
       {filteredOrders.length === 0 ? (
@@ -67,12 +45,12 @@ export default function OrdersTable({ initialOrders }) {
                 <th className="p-2 border">Korisnik</th>
                 <th className="p-2 border">Email</th>
                 <th className="p-2 border">Broj tabli</th>
-                <th className="p-2 border">Država</th>
-                <th className="p-2 border">Poštanski broj</th>
+                <th className="p-2 border">Drzava</th>
+                <th className="p-2 border">Postanski broj</th>
                 <th className="p-2 border">Grad</th>
                 <th className="p-2 border">Adresa</th>
                 <th className="p-2 border">Ime i prezime</th>
-                <th className="p-2 border">Telefon</th>
+                <th className="p-2 border">Kontakt telefon</th>
                 <th className="p-2 border">Napomena</th>
                 <th className="p-2 border">Datum</th>
                 <th className="p-2 border">Status</th>
@@ -83,7 +61,7 @@ export default function OrdersTable({ initialOrders }) {
               {filteredOrders.map((order) => (
                 <tr key={order.id} className="text-center">
                   <td className="p-2 border">
-                    <strong> {order.user?.name || "N/A"}</strong>
+                    <strong>{order.user?.name || "N/A"}</strong>
                   </td>
                   <td className="p-2 border">{order.user?.email || "N/A"}</td>
                   <td className="p-2 border">{order.quantity}</td>
@@ -92,10 +70,12 @@ export default function OrdersTable({ initialOrders }) {
                   <td className="p-2 border">{order.city}</td>
                   <td className="p-2 border">{order.address}</td>
                   <td className="p-2 border">
-                    <strong> {order.fullName}</strong>
+                    <strong>{order.fullName}</strong>
                   </td>
                   <td className="p-2 border">{order.phone}</td>
-                  <td className="p-2 border">{order.note || <em>-</em>}</td>
+                  <td className="p-2 border">
+                    {order.note ? order.note : <em>-</em>}
+                  </td>
                   <td className="p-2 border">
                     {new Date(order.createdAt).toLocaleString("sr-RS", {
                       dateStyle: "medium",
@@ -106,7 +86,6 @@ export default function OrdersTable({ initialOrders }) {
                     <OrderStatusSelect
                       orderId={order.id}
                       currentStatus={order.status}
-                      onStatusChange={handleStatusChange}
                     />
                   </td>
                   <td className="p-2 border">
