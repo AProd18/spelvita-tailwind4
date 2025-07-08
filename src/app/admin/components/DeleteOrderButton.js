@@ -8,19 +8,17 @@ export default function DeleteOrderButton({ orderId }) {
   const [isPending, startTransition] = useTransition();
 
   const handleDelete = () => {
-    if (confirm("Da li ste sigurni da želite da obrišete ovu porudžbinu?")) {
-      startTransition(() => {
-        deleteOrder(orderId);
-        setShowModal(false);
-      });
-    }
+    startTransition(() => {
+      deleteOrder(orderId);
+      setShowModal(false);
+    });
   };
 
   return (
     <>
       <button
         onClick={() => setShowModal(true)}
-        className="bg-red-600 text-white px-2 py-1 rounded text-sm hover:bg-red-700 transition"
+        className="bg-red-600 text-white px-2 py-1 rounded text-sm hover:bg-red-700 transition cursor-pointer"
       >
         Obriši
       </button>
@@ -36,13 +34,13 @@ export default function DeleteOrderButton({ orderId }) {
               <button
                 onClick={handleDelete}
                 disabled={isPending}
-                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition"
+                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition cursor-pointer"
               >
                 Da, obriši
               </button>
               <button
                 onClick={() => setShowModal(false)}
-                className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition"
+                className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400 transition cursor-pointer"
               >
                 Otkaži
               </button>
