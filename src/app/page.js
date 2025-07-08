@@ -63,14 +63,15 @@ export default async function Home() {
         <div className="bg-[color:var(--color-laurel-green)] text-[color:var(--color-cornsilk)] p-6 rounded-xl shadow">
           <h3 className="text-xl font-bold mb-2">Detoks i Energija</h3>
           <p>
-            Čisti organizam i daje ti prirodnu snagu za svakodnevne izazove.
+            Spelta pomaže u eliminaciji toksina, štiti ćelije od slobodnih
+            radikala i podržava zdravu probavu.
           </p>
         </div>
         <div className="bg-[color:var(--color-laurel-green)] text-[color:var(--color-cornsilk)] p-6 rounded-xl shadow">
           <h3 className="text-xl font-bold mb-2">Domaća proizvodnja</h3>
           <p>
-            Napravljen na porodičnom imanju sa ljubavlju i pažnjom prema svakom
-            detalju.
+            Speltu meljemo ručno, koristeći tradicionalnu ručnu mašinu, čuvajući
+            svaki prirodni kvalitet i autentičnost.
           </p>
         </div>
       </div>
@@ -138,15 +139,21 @@ export default async function Home() {
 
           <div className="grid gap-8 sm:grid-cols-2">
             <div className="bg-[color:var(--color-dark-olive)] p-6 rounded-2xl shadow-md text-left">
-              <h3 className="text-xl font-semibold mb-2">🥬 100% prirodan</h3>
+              <h3 className="text-xl font-semibold mb-2">
+                🖐️ Ručna proizvodnja
+              </h3>
               <p>
-                Bez dodatih šećera, aditiva ili konzervansa. Samo čista priroda.
+                Svaka serija je mala i pažljivo pripremljena kako bi sačuvala
+                maksimalnu svežinu i kvalitet.
               </p>
             </div>
             <div className="bg-[color:var(--color-dark-olive)] p-6 rounded-2xl shadow-md text-left">
-              <h3 className="text-xl font-semibold mb-2">❄️ Hladno ceđen</h3>
+              <h3 className="text-xl font-semibold mb-2">
+                ❄️ Zamrznut za svežinu
+              </h3>
               <p>
-                Sačuvani svi nutrijenti zahvaljujući procesu hladnog ceđenja.
+                Sok u formi kockica – lako za korišćenje, dostupno tokom cele
+                godine bez gubitka nutrijenata.
               </p>
             </div>
             <div className="bg-[color:var(--color-dark-olive)] p-6 rounded-2xl shadow-md text-left">
@@ -154,13 +161,17 @@ export default async function Home() {
                 🌱 Lokalna proizvodnja
               </h3>
               <p>
-                Proizveden u Srbiji – direktno sa naših polja do tvoje čaše.
+                Bez hemije, pesticida ili veštačkih đubriva – čista priroda iz
+                Banata.
               </p>
             </div>
             <div className="bg-[color:var(--color-dark-olive)] p-6 rounded-2xl shadow-md text-left">
-              <h3 className="text-xl font-semibold mb-2">🥤 Neuporediv ukus</h3>
+              <h3 className="text-xl font-semibold mb-2">
+                🍃 Bogat ukus i benefiti
+              </h3>
               <p>
-                Blago gorak, osvežavajuć i bogat – ukus pravog zelenog života.
+                Osvežavajući i snažan ukus koji jača imunitet, čisti organizam i
+                podiže energiju.
               </p>
             </div>
           </div>
@@ -207,7 +218,7 @@ export default async function Home() {
             zahvalan.
           </p>
           <a
-            href="#poruci"
+            href="/poruci"
             className="inline-block bg-[color:var(--color-cornsilk)] text-[color:var(--color-dark-olive)] font-semibold py-3 px-6 rounded-full hover:bg-[color:var(--color-laurel-green)] hover:text-[color:var(--color-cornsilk)] transition"
           >
             Poruči svoju dozu zdravlja
