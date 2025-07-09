@@ -19,6 +19,7 @@
     "libphonenumber-js": "^1.12.9",
     "next": "15.3.3",
     "next-auth": "^4.24.11",
+    "nodemailer": "^6.10.1",
     "prisma": "^6.9.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
