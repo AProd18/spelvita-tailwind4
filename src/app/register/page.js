@@ -13,6 +13,7 @@ export default function RegisterPage() {
   });
 
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -39,6 +40,11 @@ export default function RegisterPage() {
         setError(data.message || "Greška pri registraciji.");
         return;
       }
+
+      setSuccess(
+        "Verifikacioni email je poslat. Proverite inbox i kliknite na link da aktivirate nalog."
+      );
+      setForm({ username: "", email: "", password: "", confirmPassword: "" });
 
       router.push("/login");
     } catch (err) {
@@ -103,6 +109,8 @@ export default function RegisterPage() {
           required
         />
         {error && <p className="text-red-500 text-sm">{error}</p>}
+        {success && <p className="text-green-600 text-sm">{success}</p>}
+
         <button
           type="submit"
           className="bg-[color:var(--color-dark-olive)] text-[color:var(--color-cornsilk)] px-4 py-2 rounded hover:bg-opacity-90 hover:bg-[color:var(--color-cornsilk-dark)] hover:text-[color:var(--color-dark-olive)] cursor-pointer transition-all duration-300"

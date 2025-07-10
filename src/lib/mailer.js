@@ -6,6 +6,9 @@ export const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_FROM,
     pass: process.env.EMAIL_PASS,
   },
+  tls: {
+    rejectUnauthorized: false, // ✅ dodaj OVO
+  },
 });
 
 export const sendVerificationEmail = async (email, token) => {

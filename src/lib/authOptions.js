@@ -24,6 +24,10 @@ export const authOptions = {
           throw new Error("Neispravni podaci.");
         }
 
+        if (!user.emailVerified) {
+          throw new Error("Molimo vas da prvo verifikujete email.");
+        }
+
         const isValid = await compare(credentials.password, user.password);
         if (!isValid) {
           throw new Error("Neispravni podaci.");
