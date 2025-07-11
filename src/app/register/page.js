@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import SuccessModal from "./SuccessModal";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -45,8 +46,6 @@ export default function RegisterPage() {
         "Verifikacioni email je poslat. Proverite inbox i kliknite na link da aktivirate nalog."
       );
       setForm({ username: "", email: "", password: "", confirmPassword: "" });
-
-      router.push("/login");
     } catch (err) {
       setError("Greška u mreži.");
     }
@@ -109,7 +108,6 @@ export default function RegisterPage() {
           required
         />
         {error && <p className="text-red-500 text-sm">{error}</p>}
-        {success && <p className="text-green-600 text-sm">{success}</p>}
 
         <button
           type="submit"
@@ -118,6 +116,15 @@ export default function RegisterPage() {
           Registruj se
         </button>
       </form>
+      {success && (
+        <SuccessModal
+          message={success}
+          onClose={() => {
+            setSuccess("");
+            router.push("/login");
+          }}
+        />
+      )}
     </div>
   );
 }
