@@ -29,7 +29,6 @@ export async function POST(req) {
       },
     });
 
-    // Osveži keš
     revalidateTag("experiences");
 
     return Response.json({ message: "Uspešno sačuvano." }, { status: 201 });
