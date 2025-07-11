@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/authOptions";
 import prisma from "@/lib/prisma";
+import { revalidateTag } from "next/cache";
 
 export async function POST(req) {
   const session = await getServerSession(authOptions);
@@ -27,6 +28,9 @@ export async function POST(req) {
         userId: session.user.id,
       },
     });
+
+    // Osveži keš
+    revalidateTag("experiences");
 
     return Response.json({ message: "Uspešno sačuvano." }, { status: 201 });
   } catch (error) {

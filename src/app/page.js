@@ -1,8 +1,6 @@
 export const revalidate = 3600;
 
 import Link from "next/link";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/authOptions";
 import prisma from "@/lib/prisma";
 import { unstable_cache } from "next/cache";
 import { fetchAvailability } from "@/lib/availability";
@@ -13,6 +11,10 @@ async function fetchExperiences() {
   });
 }
 
+const getExperiences = unstable_cache(fetchExperiences, ["experiences"], {
+  tags: ["experiences"],
+});
+
 const getAvailability = unstable_cache(fetchAvailability, ["availability"], {
   tags: ["availability"],
 });
@@ -22,7 +24,7 @@ export default async function Home() {
   let availability = 0;
 
   try {
-    experiences = await fetchExperiences();
+    experiences = await getExperiences();
     availability = await getAvailability();
   } catch (error) {
     console.error(error);
