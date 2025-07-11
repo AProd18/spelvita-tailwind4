@@ -7,6 +7,7 @@ import { parsePhoneNumberFromString } from "libphonenumber-js/max";
 import PhoneInput from "react-phone-input-2";
 import HistoryIcon from "@mui/icons-material/History";
 import SuccessModal from "../components/SuccessModal";
+import ButtonWithLoader from "../components/ui/ButtonWithLoader";
 
 export default function OrderPage() {
   const { data: session, status } = useSession();
@@ -284,13 +285,12 @@ export default function OrderPage() {
 
         {error && <p className="text-red-600">{error}</p>}
 
-        <button
+        <ButtonWithLoader
+          loading={loading}
+          label="Pošalji porudžbinu"
+          loadingLabel="Slanje..."
           type="submit"
-          disabled={loading}
-          className="w-full bg-[color:var(--color-dark-olive)] text-[color:var(--color-cornsilk)] font-semibold py-2 px-4 rounded hover:bg-[color:var(--color-laurel-green)] transition cursor-pointer"
-        >
-          {loading ? "Slanje..." : "Pošalji porudžbinu"}
-        </button>
+        />
       </form>
     </div>
   );

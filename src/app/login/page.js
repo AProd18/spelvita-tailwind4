@@ -3,15 +3,18 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import ButtonWithLoader from "../components/ui/ButtonWithLoader";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const res = await signIn("credentials", {
       redirect: false,
@@ -67,13 +70,14 @@ export default function LoginPage() {
             required
           />
         </div>
-        {error && <p className="text-red-500 text-sm">{error}</p>}
-        <button
+        {error && <p className="text-red-600">{error}</p>}
+        <ButtonWithLoader
+          loading={loading}
+          label="Ulaz"
+          loadingLabel="Prijavljivanje..."
           type="submit"
-          className="bg-[color:var(--color-dark-olive)] text-[color:var(--color-cornsilk)] px-4 py-2 rounded hover:bg-opacity-90 hover:bg-[color:var(--color-cornsilk-dark)] hover:text-[color:var(--color-dark-olive)] cursor-pointer w-full transition-all duration-300"
-        >
-          Ulaz
-        </button>
+        />
+
         <div className="text-center text-sm mt-6">
           <p className="text-gray-700">
             Nemate nalog?
