@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import SuccessModal from "../components/SuccessModal";
+import ButtonWithLoader from "../components/ui/ButtonWithLoader";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -15,6 +16,7 @@ export default function RegisterPage() {
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -28,6 +30,9 @@ export default function RegisterPage() {
       return;
     }
 
+    setLoading(true);
+    setError("");
+
     try {
       const res = await fetch("/api/register", {
         method: "POST",
@@ -39,6 +44,7 @@ export default function RegisterPage() {
 
       if (!res.ok) {
         setError(data.message || "Greška pri registraciji.");
+        setLoading(false);
         return;
       }
 
@@ -48,6 +54,8 @@ export default function RegisterPage() {
       setForm({ username: "", email: "", password: "", confirmPassword: "" });
     } catch (err) {
       setError("Greška u mreži.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -109,12 +117,12 @@ export default function RegisterPage() {
         />
         {error && <p className="text-red-500 text-sm">{error}</p>}
 
-        <button
+        <ButtonWithLoader
+          loading={loading}
+          label="Registruj se"
+          loadingLabel="Registracija..."
           type="submit"
-          className="bg-[color:var(--color-dark-olive)] text-[color:var(--color-cornsilk)] px-4 py-2 rounded hover:bg-opacity-90 hover:bg-[color:var(--color-cornsilk-dark)] hover:text-[color:var(--color-dark-olive)] cursor-pointer transition-all duration-300"
-        >
-          Registruj se
-        </button>
+        />
       </form>
       {success && (
         <SuccessModal
