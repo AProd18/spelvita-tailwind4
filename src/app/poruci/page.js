@@ -112,7 +112,13 @@ export default function OrderPage() {
         Poruči Elixir od spelte
       </h1>
 
-      {showModal && <SuccessModal onClose={() => setShowModal(false)} />}
+      {showModal && (
+        <SuccessModal
+          title="Porudžbina poslata!"
+          message="Hvala što ste poručili naš proizvod! Bićete uskoro preusmereni na stranicu za praćenje statusa."
+          onClose={() => setShowModal(false)}
+        />
+      )}
 
       {lastOrder && (
         <button

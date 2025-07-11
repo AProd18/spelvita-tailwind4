@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import SuccessModal from "./SuccessModal";
+import SuccessModal from "../components/SuccessModal";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -118,7 +118,9 @@ export default function RegisterPage() {
       </form>
       {success && (
         <SuccessModal
+          title="Uspešno!"
           message={success}
+          autoClose={true}
           onClose={() => {
             setSuccess("");
             router.push("/login");
