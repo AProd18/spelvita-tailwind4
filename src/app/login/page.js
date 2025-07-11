@@ -15,30 +15,35 @@ export default function LoginPage() {
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setError(""); // resetuj error pre pokušaja
+    try {
+      const res = await signIn("credentials", {
+        redirect: false,
+        email,
+        password,
+      });
 
-    const res = await signIn("credentials", {
-      redirect: false,
-      email,
-      password,
-    });
+      if (res.ok) {
+        try {
+          const checkRes = await fetch("/api/experience/has");
+          const checkData = await checkRes.json();
 
-    if (res.ok) {
-      // pozovi API da proveri da li je korisnik već uneo iskustvo
-      try {
-        const checkRes = await fetch("/api/experience/has");
-        const checkData = await checkRes.json();
-
-        if (checkRes.ok && checkData.hasExperience) {
-          router.push("/"); // već postoji iskustvo, idi na početnu
-        } else {
-          router.push("/add-experience"); // nema iskustva, idi na unos
+          if (checkRes.ok && checkData.hasExperience) {
+            router.push("/");
+          } else {
+            router.push("/add-experience");
+          }
+        } catch (err) {
+          console.error("Greška prilikom provere iskustva:", err);
+          router.push("/");
         }
-      } catch (err) {
-        console.error("Greška prilikom provere iskustva:", err);
-        router.push("/"); // fallback ako nešto pukne
+      } else {
+        setError("Neispravan email ili lozinka.");
       }
-    } else {
-      setError("Neispravan email ili lozinka.");
+    } catch (err) {
+      setError("Greška prilikom prijave.");
+    } finally {
+      setLoading(false);
     }
   };
 
