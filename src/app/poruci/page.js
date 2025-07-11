@@ -11,6 +11,7 @@ import SuccessModal from "../components/SuccessModal";
 export default function OrderPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
+  // const [testModal, setTestModal] = useState(false);
 
   const [quantity, setQuantity] = useState(1);
   const [note, setNote] = useState("");
@@ -120,6 +121,14 @@ export default function OrderPage() {
         />
       )}
 
+      {/* {testModal && (
+        <SuccessModal
+          title="Test modal"
+          message="Ovo je test verzija modala. Sve radi!"
+          onClose={() => setTestModal(false)}
+        />
+      )} */}
+
       {lastOrder && (
         <button
           type="button"
@@ -148,6 +157,13 @@ export default function OrderPage() {
           <strong>Cena:</strong> {(quantity * 1500).toLocaleString("sr-RS")} RSD
         </p>
       </div>
+      <button
+        type="button"
+        onClick={() => setTestModal(true)}
+        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 mb-4"
+      >
+        Testiraj modal
+      </button>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
