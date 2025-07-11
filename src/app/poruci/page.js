@@ -157,13 +157,13 @@ export default function OrderPage() {
           <strong>Cena:</strong> {(quantity * 1500).toLocaleString("sr-RS")} RSD
         </p>
       </div>
-      <button
+      {/* <button
         type="button"
         onClick={() => setTestModal(true)}
         className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 mb-4"
       >
         Testiraj modal
-      </button>
+      </button> */}
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
