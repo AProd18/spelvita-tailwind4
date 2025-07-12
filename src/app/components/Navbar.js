@@ -25,14 +25,14 @@ export default function Navbar() {
               O nama
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link
               href="/kontakt"
               className="hover:text-[color:var(--color-laurel-green)] transition-colors"
             >
               Kontakt
             </Link>
-          </li>
+          </li> */}
           <li className="text-[color:var(--color-laurel-green)] select-none">
             |
           </li>
